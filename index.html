@@ -1,195 +1,1185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Radhika's Makeup Studio | Ujjain</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radhika's Makeup Studio – Beauty, Confidence & Glamour</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --pink: #ff4d8d;
+    --pink-light: #ff80b0;
+    --peach: #fbd3d3;
+    --mint: #a8f0e0;
+    --sky: #b8e4ff;
+    --gold: #f5c842;
+    --gold2: #e0a800;
+    --white: #ffffff;
+    --bg: #fff9fb;
+    --text-dark: #1a0a12;
+    --text-mid: #5a2d40;
+    --radius: 20px;
+    --shadow: 0 8px 32px rgba(255,77,141,0.13);
+    --glass: rgba(255,255,255,0.55);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--peach); }
+  ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 99px; }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #fff0f5;
-            color: #333;
-        }
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border-bottom: 1px solid rgba(255,77,141,0.12);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    box-shadow: 0 2px 24px rgba(255,77,141,0.08);
+  }
+  .nav-logo {
+    font-size: 1.15rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--pink), #b5007a);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.92rem; font-weight: 600; color: var(--text-mid);
+    position: relative; padding-bottom: 3px; transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--pink), var(--gold));
+    transition: width 0.35s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links a:hover { color: var(--pink); text-shadow: 0 0 12px rgba(255,77,141,0.4); }
+  .nav-links a:hover::after { width: 100%; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 25px; height: 2.5px; border-radius: 2px;
+    background: var(--pink); transition: all 0.3s;
+  }
 
-        header {
-            background: linear-gradient(to right, #ff5fa2, #ff8ccf);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+  /* ===== HERO ===== */
+  #home {
+    min-height: 100vh; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #fff0f7 0%, #fde8f5 30%, #e8f8ff 70%, #f0fff8 100%);
+    padding-top: 68px;
+  }
+  .hero-bg-gradient {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 40%, rgba(255,77,141,0.13) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 80% 60%, rgba(168,240,224,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 10%, rgba(184,228,255,0.15) 0%, transparent 70%);
+  }
+  /* Floating tools */
+  .tool {
+    position: absolute; pointer-events: none; z-index: 1;
+    filter: drop-shadow(0 8px 16px rgba(255,77,141,0.18));
+    opacity: 0.82;
+  }
+  .tool img { width: 100%; height: 100%; object-fit: contain; }
+  .tool-brush { width: 110px; top: 14%; left: 3%; animation: float1 5s ease-in-out infinite; transform: rotate(-30deg); }
+  .tool-lipstick { width: 70px; top: 20%; right: 6%; animation: float2 6s ease-in-out infinite; transform: rotate(20deg); }
+  .tool-compact { width: 90px; bottom: 20%; left: 5%; animation: float3 7s ease-in-out infinite; }
+  .tool-blender { width: 75px; bottom: 15%; right: 4%; animation: float1 5.5s ease-in-out infinite; transform: rotate(-15deg); }
+  .tool-eyeliner { width: 80px; top: 60%; left: 2%; animation: float2 6.5s ease-in-out infinite; transform: rotate(45deg); }
+  .tool-mehndi { width: 100px; top: 10%; right: 18%; animation: float3 8s ease-in-out infinite; transform: rotate(-20deg); }
 
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+  @keyframes float1 {
+    0%,100% { transform: translateY(0) rotate(-30deg); }
+    50% { transform: translateY(-18px) rotate(-30deg); }
+  }
+  @keyframes float2 {
+    0%,100% { transform: translateY(0) rotate(20deg); }
+    50% { transform: translateY(-14px) rotate(20deg); }
+  }
+  @keyframes float3 {
+    0%,100% { transform: translateY(0) rotate(-15deg); }
+    50% { transform: translateY(-22px) rotate(-15deg); }
+  }
 
-        header p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
+  .hero-content {
+    position: relative; z-index: 2; text-align: center;
+    padding: 3rem 1.5rem; max-width: 700px;
+  }
+  .hero-content h1 {
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 900; line-height: 1.08;
+    background: linear-gradient(135deg, #c4005a 0%, var(--pink) 50%, #9b59b6 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 0.6rem;
+    text-shadow: none;
+    letter-spacing: -1px;
+  }
+  .hero-sub {
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--text-mid); font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .hero-tagline {
+    font-size: clamp(0.92rem, 2vw, 1.1rem);
+    color: #8b4560; margin-bottom: 2.2rem; letter-spacing: 0.5px;
+  }
+  .hero-tagline span { margin: 0 6px; color: var(--pink); font-weight: 700; }
+  .hero-btns { display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--pink), #c4005a);
+    color: #fff; border: none; padding: 0.9rem 2.2rem;
+    border-radius: 50px; font-size: 1rem; font-weight: 700;
+    cursor: pointer; box-shadow: 0 0 24px rgba(255,77,141,0.5), 0 4px 16px rgba(196,0,90,0.3);
+    transition: all 0.3s; animation: glow-pulse 2.5s ease-in-out infinite;
+    letter-spacing: 0.3px;
+  }
+  .btn-primary:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 0 36px rgba(255,77,141,0.7), 0 8px 24px rgba(196,0,90,0.4); }
+  @keyframes glow-pulse {
+    0%,100% { box-shadow: 0 0 24px rgba(255,77,141,0.5), 0 4px 16px rgba(196,0,90,0.3); }
+    50% { box-shadow: 0 0 40px rgba(255,77,141,0.75), 0 4px 20px rgba(196,0,90,0.45); }
+  }
+  .btn-secondary {
+    background: rgba(255,255,255,0.7); color: var(--pink);
+    border: 2px solid var(--pink); padding: 0.88rem 2.2rem;
+    border-radius: 50px; font-size: 1rem; font-weight: 700;
+    cursor: pointer; backdrop-filter: blur(8px);
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover { background: var(--pink); color: #fff; transform: translateY(-3px); }
 
-        nav {
-            background-color: #ffb6c1;
-            padding: 10px;
-            text-align: center;
-        }
+  /* ===== SECTION BASE ===== */
+  section { padding: 80px 5vw; }
+  .section-title {
+    text-align: center; font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 900; margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #c4005a, var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .section-sub {
+    text-align: center; color: #8b4560; font-size: 1rem;
+    margin-bottom: 3rem; font-weight: 500;
+  }
+  .divider {
+    width: 60px; height: 4px; border-radius: 2px; margin: 0.6rem auto 0.5rem;
+    background: linear-gradient(90deg, var(--pink), var(--gold));
+  }
 
-        nav a {
-            color: #333;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: 500;
-        }
+  /* ===== OWNER SECTION ===== */
+  #owner {
+    background: linear-gradient(135deg, #fff5fb, #f0fff9);
+  }
+  .owner-wrap {
+    display: flex; gap: 3rem; align-items: center;
+    max-width: 900px; margin: 0 auto; flex-wrap: wrap; justify-content: center;
+  }
+  .owner-img-wrap {
+    position: relative; flex-shrink: 0;
+  }
+  .owner-img-ring {
+    width: 200px; height: 200px; border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(135deg, var(--pink), var(--gold), var(--mint));
+    box-shadow: 0 0 40px rgba(255,77,141,0.35), 0 0 80px rgba(255,77,141,0.15);
+    animation: ring-glow 3s ease-in-out infinite;
+  }
+  @keyframes ring-glow {
+    0%,100% { box-shadow: 0 0 40px rgba(255,77,141,0.35), 0 0 80px rgba(255,77,141,0.15); }
+    50% { box-shadow: 0 0 60px rgba(255,77,141,0.55), 0 0 110px rgba(255,77,141,0.25); }
+  }
+  .owner-img-ring img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+    background: linear-gradient(135deg, #ffd6e7, #ffe8d6);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .owner-placeholder {
+    width: 100%; height: 100%; border-radius: 50%;
+    background: linear-gradient(135deg, #ffd6e7 0%, #ffb3c8 50%, #ffc4a8 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .owner-info { flex: 1; min-width: 260px; }
+  .owner-info h2 {
+    font-size: 2rem; font-weight: 900; color: var(--text-dark); margin-bottom: 0.3rem;
+  }
+  .owner-title {
+    color: var(--pink); font-weight: 700; font-size: 1rem; margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+  }
+  .owner-bio {
+    color: #5a3345; line-height: 1.75; font-size: 0.97rem;
+  }
+  .owner-badges { display: flex; gap: 0.8rem; margin-top: 1.2rem; flex-wrap: wrap; }
+  .badge {
+    background: linear-gradient(135deg, rgba(255,77,141,0.1), rgba(168,240,224,0.2));
+    border: 1px solid rgba(255,77,141,0.25); border-radius: 50px;
+    padding: 0.38rem 1rem; font-size: 0.82rem; font-weight: 700;
+    color: var(--text-mid);
+  }
 
-        section {
-            padding: 40px 20px;
-            max-width: 1100px;
-            margin: auto;
-        }
+  /* ===== SERVICES ===== */
+  #services { background: var(--bg); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .service-card {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    border: 1px solid rgba(255,77,141,0.08);
+    cursor: pointer;
+  }
+  .service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(255,77,141,0.22), 0 0 0 1px rgba(255,77,141,0.15);
+  }
+  .service-img {
+    height: 180px; overflow: hidden; position: relative;
+    background: linear-gradient(135deg, #ffd6e7, #ffe8d6);
+  }
+  .service-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .service-card:hover .service-img img { transform: scale(1.1); }
+  .service-img-placeholder {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+  }
+  .service-body { padding: 1.2rem 1.2rem 1.4rem; }
+  .service-body h3 {
+    font-size: 1.05rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.4rem;
+  }
+  .service-body p { font-size: 0.85rem; color: #7a4055; line-height: 1.6; }
+  .service-tag {
+    display: inline-block; margin-top: 0.7rem;
+    background: linear-gradient(135deg, var(--pink), #c4005a);
+    color: #fff; font-size: 0.75rem; font-weight: 700;
+    padding: 0.25rem 0.8rem; border-radius: 50px;
+  }
 
-        .hero {
-            text-align: center;
-        }
+  /* ===== PRICE LIST ===== */
+  #pricing {
+    background: linear-gradient(135deg, #fff0f7 0%, #f0fff9 50%, #f0f7ff 100%);
+  }
+  .pricing-note {
+    background: linear-gradient(135deg, rgba(245,200,66,0.15), rgba(255,77,141,0.08));
+    border: 1.5px solid rgba(245,200,66,0.4); border-radius: 14px;
+    padding: 1rem 1.4rem; margin: 0 auto 2.5rem; max-width: 780px;
+    display: flex; gap: 0.8rem; align-items: flex-start;
+  }
+  .pricing-note-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .pricing-note p { font-size: 0.88rem; color: #7a4020; font-weight: 600; line-height: 1.6; }
+  .pricing-categories {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem; max-width: 1100px; margin: 0 auto;
+  }
+  .price-cat-card {
+    background: rgba(255,255,255,0.85); border-radius: var(--radius);
+    box-shadow: 0 8px 32px rgba(255,77,141,0.1);
+    border: 1px solid rgba(255,77,141,0.1);
+    overflow: hidden; backdrop-filter: blur(12px);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .price-cat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(255,77,141,0.2);
+  }
+  .price-cat-header {
+    padding: 1.1rem 1.4rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .price-cat-header.nails { background: linear-gradient(135deg, #ff4d8d, #ff80b0); }
+  .price-cat-header.makeup { background: linear-gradient(135deg, #c4005a, #ff4d8d); }
+  .price-cat-header.hair { background: linear-gradient(135deg, #9b59b6, #c4005a); }
+  .price-cat-header.extra { background: linear-gradient(135deg, #f5c842, #e0a800); }
+  .price-cat-icon { font-size: 1.7rem; }
+  .price-cat-header h3 { color: #fff; font-size: 1.1rem; font-weight: 800; letter-spacing: 0.3px; }
+  .price-items { padding: 0.8rem 0; }
+  .price-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.7rem 1.4rem;
+    border-bottom: 1px solid rgba(255,77,141,0.07);
+    transition: background 0.2s;
+  }
+  .price-item:last-child { border-bottom: none; }
+  .price-item:hover { background: rgba(255,77,141,0.04); }
+  .price-name { font-size: 0.88rem; font-weight: 600; color: var(--text-mid); flex: 1; }
+  .price-value {
+    font-size: 1rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--pink), #c4005a);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    white-space: nowrap; margin-left: 1rem;
+  }
 
-        .hero img {
-            width: 100%;
-            max-height: 420px;
-            object-fit: cover;
-            border-radius: 12px;
-        }
+  /* ===== GALLERY ===== */
+  #gallery { background: var(--bg); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; max-width: 900px; margin: 0 auto;
+  }
+  .gallery-item {
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(255,77,141,0.12);
+    cursor: pointer; position: relative;
+    background: linear-gradient(135deg, #ffd6e7, #ffc4a8);
+    aspect-ratio: 3/4;
+    transition: transform 0.35s, box-shadow 0.35s;
+  }
+  .gallery-item:hover {
+    transform: scale(1.04) translateY(-4px);
+    box-shadow: 0 16px 40px rgba(255,77,141,0.3);
+    z-index: 2;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-item-placeholder {
+    width: 100%; height: 100%; display: flex; align-items: center;
+    justify-content: center; font-size: 2.8rem;
+  }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(196,0,90,0.5) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 1rem;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span { color: #fff; font-weight: 700; font-size: 0.9rem; }
 
-        h2 {
-            color: #ff4f9a;
-            text-align: center;
-            margin-bottom: 25px;
-        }
+  /* ===== REVIEWS ===== */
+  #reviews {
+    background: linear-gradient(135deg, #fdf0f7, #f0fdf9);
+  }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.4rem; max-width: 1100px; margin: 0 auto;
+  }
+  .review-card {
+    background: rgba(255,255,255,0.8); backdrop-filter: blur(12px);
+    border-radius: var(--radius); padding: 1.5rem;
+    box-shadow: 0 4px 24px rgba(255,77,141,0.1);
+    border: 1px solid rgba(255,77,141,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .review-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(255,77,141,0.18);
+  }
+  .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
+  .review-text {
+    font-size: 0.92rem; color: #5a2d40; line-height: 1.7;
+    font-style: italic; margin-bottom: 1rem;
+  }
+  .review-author { display: flex; align-items: center; gap: 0.7rem; }
+  .review-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .review-name { font-weight: 800; font-size: 0.9rem; color: var(--text-dark); }
+  .review-loc { font-size: 0.78rem; color: #9b6070; }
 
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+  /* ===== BOOKING CTA ===== */
+  #booking {
+    background: linear-gradient(135deg, #c4005a, var(--pink), #9b59b6);
+    text-align: center; padding: 80px 5vw; position: relative; overflow: hidden;
+  }
+  #booking::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(255,255,255,0.08), transparent);
+  }
+  #booking h2 {
+    font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900;
+    color: #fff; margin-bottom: 0.5rem; position: relative;
+  }
+  #booking p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 2rem; position: relative; }
+  .btn-whatsapp {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #25D366; color: #fff;
+    padding: 1rem 2.4rem; border-radius: 50px;
+    font-size: 1.05rem; font-weight: 800;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+    transition: all 0.3s; position: relative;
+  }
+  .btn-whatsapp:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 16px 48px rgba(37,211,102,0.6); }
+  .btn-whatsapp svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
+  /* ===== CONTACT / FOOTER ===== */
+  footer {
+    background: linear-gradient(135deg, #1a0a12, #2d0a1e);
+    color: #fff; padding: 60px 5vw 30px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem; max-width: 1100px; margin: 0 auto 40px;
+  }
+  .footer-brand h3 {
+    font-size: 1.3rem; font-weight: 900; margin-bottom: 0.8rem;
+    background: linear-gradient(135deg, var(--pink), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .footer-brand p { color: #c4849a; font-size: 0.88rem; line-height: 1.7; }
+  .footer-col h4 {
+    font-size: 0.95rem; font-weight: 800; color: var(--peach); margin-bottom: 1.1rem;
+    letter-spacing: 0.5px;
+  }
+  .footer-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    color: #c4849a; font-size: 0.88rem; margin-bottom: 0.7rem;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--pink-light); }
+  .footer-link .fi { font-size: 1.05rem; }
+  .footer-social { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,77,141,0.15); border: 1px solid rgba(255,77,141,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: var(--pink-light);
+    transition: all 0.3s; cursor: pointer;
+  }
+  .social-btn:hover { background: var(--pink); color: #fff; transform: translateY(-3px); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,77,141,0.15);
+    padding-top: 1.5rem; text-align: center;
+    color: #8b4560; font-size: 0.82rem;
+  }
+  .footer-bottom span { color: var(--pink); }
 
-        .card img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(26,10,18,0.7); backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-box {
+    background: #fff; border-radius: 24px;
+    padding: 2.2rem 2rem; max-width: 480px; width: 100%;
+    box-shadow: 0 24px 80px rgba(196,0,90,0.3);
+    transform: translateY(30px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+    position: relative;
+  }
+  .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    background: none; border: none; font-size: 1.6rem;
+    cursor: pointer; color: #9b6070; transition: color 0.2s;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--pink); }
+  .modal-box h2 {
+    font-size: 1.5rem; font-weight: 900; margin-bottom: 0.3rem;
+    background: linear-gradient(135deg, #c4005a, var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .modal-box p { color: #8b4560; font-size: 0.88rem; margin-bottom: 1.4rem; }
+  .form-group { margin-bottom: 1.1rem; }
+  .form-group label {
+    display: block; font-size: 0.83rem; font-weight: 700;
+    color: var(--text-mid); margin-bottom: 0.4rem; letter-spacing: 0.3px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 0.78rem 1rem;
+    border: 2px solid rgba(255,77,141,0.2); border-radius: 12px;
+    font-size: 0.93rem; font-family: inherit;
+    background: #fff9fb; color: var(--text-dark);
+    outline: none; transition: border-color 0.25s, box-shadow 0.25s;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 3px rgba(255,77,141,0.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .btn-submit {
+    width: 100%; padding: 1rem;
+    background: linear-gradient(135deg, var(--pink), #c4005a);
+    color: #fff; border: none; border-radius: 12px;
+    font-size: 1rem; font-weight: 800; cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255,77,141,0.4);
+    transition: all 0.3s; letter-spacing: 0.3px;
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,77,141,0.55); }
 
-        .contact-box {
-            background: #ffe4ec;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-        }
+  /* ===== SCROLL ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .contact-box p {
-            margin: 8px 0;
-            font-size: 16px;
-        }
+  /* ===== MOBILE NAV ===== */
+  .mobile-nav {
+    position: fixed; top: 68px; left: 0; width: 100%;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(18px);
+    z-index: 999; padding: 1.5rem 5vw;
+    display: none; flex-direction: column; gap: 1rem;
+    box-shadow: 0 8px 32px rgba(255,77,141,0.12);
+    transform: translateY(-10px); opacity: 0;
+    transition: all 0.3s;
+  }
+  .mobile-nav.open { display: flex; transform: translateY(0); opacity: 1; }
+  .mobile-nav a {
+    font-weight: 700; color: var(--text-mid); font-size: 1.05rem;
+    padding: 0.5rem 0; border-bottom: 1px solid rgba(255,77,141,0.08);
+    transition: color 0.2s;
+  }
+  .mobile-nav a:last-child { border-bottom: none; }
+  .mobile-nav a:hover { color: var(--pink); }
 
-        .btn {
-            display: inline-block;
-            margin-top: 15px;
-            background: #ff4f9a;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 500;
-        }
+  /* ===== LIGHTBOX ===== */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 3000;
+    background: rgba(10,4,8,0.92); backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox img {
+    max-width: 90vw; max-height: 85vh; border-radius: 16px;
+    box-shadow: 0 24px 80px rgba(255,77,141,0.3);
+    transform: scale(0.9); transition: transform 0.35s;
+  }
+  .lightbox.open img { transform: scale(1); }
+  .lightbox-close {
+    position: absolute; top: 1.2rem; right: 1.5rem;
+    background: rgba(255,77,141,0.15); border: none;
+    color: #fff; font-size: 1.8rem; cursor: pointer;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lightbox-close:hover { background: var(--pink); }
 
-        footer {
-            background: #ff5fa2;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px;
-        }
-    </style>
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .owner-wrap { flex-direction: column; text-align: center; }
+    .owner-badges { justify-content: center; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 60px 4vw; }
+    .tool-brush { width: 75px; }
+    .tool-lipstick { width: 50px; }
+    .tool-compact { width: 65px; }
+    .tool-blender { width: 55px; }
+    .tool-eyeliner { display: none; }
+    .tool-mehndi { display: none; }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .modal-box { padding: 1.6rem 1.2rem; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-    <h1>Radhika's Makeup Studio</h1>
-    <p>Professional Makeup Artist | Ujjain</p>
-</header>
-
+<!-- ===== NAVBAR ===== -->
 <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-logo">Radhika's<br>Makeup Studio</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="offers.html">Offers</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<section id="home" class="hero">
-    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" alt="Makeup Studio">
-    <h2>Enhancing Beauty With Perfection</h2>
-    <p>Bridal • Party • Engagement • HD & Airbrush Makeup</p>
-</section>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="offers.html">Offers</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
 
-<section id="about">
-    <h2>About Radhika</h2>
-    <p style="text-align:center; max-width:800px; margin:auto;">
-        Hi, I am <b>Radhika Yadav</b>, a professional makeup artist based in Ujjain.
-        I specialize in bridal, party and professional makeup with premium products.
-        My goal is to enhance natural beauty and make every client feel confident and beautiful.
+<!-- ===== HERO ===== -->
+<section id="home">
+  <div class="hero-bg-gradient"></div>
+
+  <!-- Floating makeup tools using emoji + CSS (no external deps) -->
+  <div class="tool tool-brush">
+    <svg viewBox="0 0 80 200" xmlns="http://www.w3.org/2000/svg" width="80">
+      <ellipse cx="40" cy="25" rx="22" ry="26" fill="#c0956b" opacity="0.9"/>
+      <ellipse cx="40" cy="28" rx="16" ry="20" fill="#e8c9a0"/>
+      <rect x="36" y="48" width="8" height="100" rx="4" fill="#8b5e3c"/>
+      <rect x="34" y="145" width="12" height="45" rx="6" fill="#5a3a1e"/>
+      <ellipse cx="40" cy="190" rx="6" ry="4" fill="#3d2510"/>
+    </svg>
+  </div>
+  <div class="tool tool-lipstick">
+    <svg viewBox="0 0 50 130" xmlns="http://www.w3.org/2000/svg" width="50">
+      <rect x="15" y="60" width="20" height="60" rx="4" fill="#b0bec5"/>
+      <rect x="17" y="62" width="16" height="56" rx="3" fill="#cfd8dc"/>
+      <rect x="14" y="40" width="22" height="24" rx="3" fill="#37474f"/>
+      <ellipse cx="25" cy="38" rx="11" ry="6" fill="#c4005a"/>
+      <path d="M14 40 Q25 20 36 40" fill="#ff4d8d"/>
+      <rect x="16" y="115" width="18" height="8" rx="2" fill="#90a4ae"/>
+    </svg>
+  </div>
+  <div class="tool tool-compact">
+    <svg viewBox="0 0 110 55" xmlns="http://www.w3.org/2000/svg" width="110">
+      <rect x="2" y="2" width="106" height="51" rx="12" fill="#c0956b"/>
+      <rect x="4" y="4" width="102" height="47" rx="10" fill="#d4a574"/>
+      <ellipse cx="55" cy="27" rx="32" ry="18" fill="#e8c9a0"/>
+      <ellipse cx="55" cy="27" rx="26" ry="14" fill="#f5deb3"/>
+      <ellipse cx="55" cy="27" rx="10" ry="6" fill="#c4956a" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="tool tool-blender">
+    <svg viewBox="0 0 60 160" xmlns="http://www.w3.org/2000/svg" width="60">
+      <ellipse cx="30" cy="130" rx="25" ry="28" fill="#ffb3c8"/>
+      <ellipse cx="30" cy="132" rx="20" ry="23" fill="#ffd6e7"/>
+      <path d="M25 108 Q30 60 30 20" stroke="#e8989e" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <ellipse cx="30" cy="18" rx="8" ry="6" fill="#c4849a"/>
+    </svg>
+  </div>
+  <div class="tool tool-eyeliner">
+    <svg viewBox="0 0 20 180" xmlns="http://www.w3.org/2000/svg" width="20">
+      <rect x="6" y="10" width="8" height="130" rx="4" fill="#2d2d2d"/>
+      <rect x="7" y="12" width="6" height="80" rx="3" fill="#444"/>
+      <path d="M6 140 L10 175 L14 140 Z" fill="#1a1a1a"/>
+    </svg>
+  </div>
+  <div class="tool tool-mehndi">
+    <svg viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg" width="100">
+      <ellipse cx="50" cy="30" rx="30" ry="28" fill="#8B4513"/>
+      <ellipse cx="50" cy="32" rx="22" ry="20" fill="#D2691E"/>
+      <path d="M50 56 Q48 100 45 170" stroke="#8B4513" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M55 56 Q57 80 60 140" stroke="#6B3410" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <!-- Mehndi pattern -->
+      <circle cx="50" cy="28" r="8" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.5"/>
+      <circle cx="50" cy="28" r="4" fill="#fff" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <h1>Radhika's<br>Makeup Studio</h1>
+    <p class="hero-sub">Beauty, Confidence &amp; Glamour</p>
+    <p class="hero-tagline">
+      Bridal <span>•</span> Party <span>•</span> Mehndi <span>•</span> Hair Styling
     </p>
+    <div class="hero-btns">
+      <button class="btn-primary" id="bookNowBtn">🔥 Book Now</button>
+      <a href="services.html" class="btn-secondary">View Services →</a>
+    </div>
+  </div>
 </section>
 
+<!-- ===== OWNER ===== -->
+<section id="owner">
+  <div class="owner-wrap fade-in">
+    <div class="owner-img-wrap">
+      <div class="owner-img-ring">
+        <div class="owner-placeholder">👩‍🎨</div>
+      </div>
+    </div>
+    <div class="owner-info">
+      <h2>Radhika Yadav</h2>
+      <p class="owner-title">✨ Professional Makeup Artist</p>
+      <p class="owner-bio">
+        With over 8 years of artistry transforming beauty dreams into reality, Radhika Yadav is Lucknow's most trusted makeup artist. Trained in international techniques and deeply rooted in bridal aesthetics, she crafts looks that are bold, breathtaking, and uniquely yours. From ethereal bridal finishes to glamorous party looks, every stroke is a signature of perfection. Your confidence is her canvas.
+      </p>
+      <div class="owner-badges">
+        <span class="badge">8+ Years Experience</span>
+        <span class="badge">500+ Brides</span>
+        <span class="badge">HD Certified</span>
+        <span class="badge">Lucknow's Best</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
 <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef">
-            <h3>Bridal Makeup</h3>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6c87">
-            <h3>Party Makeup</h3>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30">
-            <h3>Engagement Makeup</h3>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae">
-            <h3>Nail Art & HD Makeup</h3>
-        </div>
+  <h2 class="section-title fade-in">Our Services</h2>
+  <div class="divider fade-in"></div>
+  <p class="section-sub fade-in">Premium beauty services crafted just for you</p>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-img">
+        <div class="service-img-placeholder">👰</div>
+      </div>
+      <div class="service-body">
+        <h3>Bridal Makeup</h3>
+        <p>Flawless, long-lasting bridal looks — from traditional to contemporary. HD Airbrush &amp; Derma-based finish.</p>
+        <span class="service-tag">Most Popular</span>
+      </div>
     </div>
+    <div class="service-card fade-in">
+      <div class="service-img">
+        <div class="service-img-placeholder" style="background:linear-gradient(135deg,#ffe0f0,#ffd6e7);">🎉</div>
+      </div>
+      <div class="service-body">
+        <h3>Party Makeup</h3>
+        <p>Glamorous, eye-catching looks for every celebration. Bold, fresh &amp; photo-ready every time.</p>
+        <span class="service-tag">Trending</span>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img">
+        <div class="service-img-placeholder" style="background:linear-gradient(135deg,#d4f0d4,#c8e6c8);">🌿</div>
+      </div>
+      <div class="service-body">
+        <h3>Mehndi Design</h3>
+        <p>Intricate, artistic henna designs — bridal, Arabic, Indo-western and modern fusion patterns.</p>
+        <span class="service-tag">Artistic</span>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img">
+        <div class="service-img-placeholder" style="background:linear-gradient(135deg,#f0e0ff,#e8d0ff);">💇‍♀️</div>
+      </div>
+      <div class="service-body">
+        <h3>Hair Styling</h3>
+        <p>Expert hairstyles from classic buns to modern waves. Customized for your outfit and occasion.</p>
+        <span class="service-tag">Expert</span>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img">
+        <div class="service-img-placeholder" style="background:linear-gradient(135deg,#fff0d4,#ffe8c4);">💅</div>
+      </div>
+      <div class="service-body">
+        <h3>Nail Art</h3>
+        <p>Gel paint, overlays, extensions &amp; creative nail art. Salon-perfect nails for every mood.</p>
+        <span class="service-tag">New</span>
+      </div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-img">
+        <div class="service-img-placeholder" style="background:linear-gradient(135deg,#ffd6ff,#f0b0ff);">👗</div>
+      </div>
+      <div class="service-body">
+        <h3>Saree Draping</h3>
+        <p>Elegant Lehenga &amp; Saree draping for weddings, functions &amp; parties. Perfectly draped, every time.</p>
+        <span class="service-tag">Exclusive</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="contact">
-    <h2>Contact & Booking</h2>
-    <div class="contact-box">
-        <p>📍 Pragati Nagar, Mahakal Vanijya, Ujjain, MP</p>
-        <p>📞 Phone / WhatsApp: <b>+91 78049 47087</b></p>
-        <p>📧 Email: shivanivishal444@gmail.com</p>
-        <p>📸 Instagram: @radhikas_makeup_studio_2717</p>
+<!-- ===== PRICE LIST ===== -->
+<section id="pricing">
+  <h2 class="section-title fade-in">Price List</h2>
+  <div class="divider fade-in"></div>
+  <p class="section-sub fade-in">Transparent pricing — premium quality at honest rates</p>
 
-        <a class="btn" href="https://wa.me/917804947087" target="_blank">Book on WhatsApp</a>
+  <div class="pricing-note fade-in">
+    <div class="pricing-note-icon">✨</div>
+    <p><strong>All packages include:</strong> Hairpins, Eyelashes, Lenses, Accessories, Buns, Safety Pins, Saree/Lehenga Draping &amp; Hairstyle</p>
+  </div>
+
+  <div class="pricing-categories">
+    <!-- Nails -->
+    <div class="price-cat-card fade-in">
+      <div class="price-cat-header nails">
+        <div class="price-cat-icon">💅</div>
+        <h3>Nail Services</h3>
+      </div>
+      <div class="price-items">
+        <div class="price-item">
+          <span class="price-name">Gel Paint on Natural Nails</span>
+          <span class="price-value">₹600</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">Gel Overlays</span>
+          <span class="price-value">₹1,200</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">Gel Extension</span>
+          <span class="price-value">₹1,200</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">Acrylic Extensions</span>
+          <span class="price-value">₹2,000</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">No Glue Extensions</span>
+          <span class="price-value">₹2,300</span>
+        </div>
+      </div>
     </div>
+
+    <!-- Makeup -->
+    <div class="price-cat-card fade-in">
+      <div class="price-cat-header makeup">
+        <div class="price-cat-icon">💄</div>
+        <h3>Makeup Services</h3>
+      </div>
+      <div class="price-items">
+        <div class="price-item">
+          <span class="price-name">Bridal Makeup (Derma Long Lasting)</span>
+          <span class="price-value">₹5,000</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">HD Airbrush Makeup</span>
+          <span class="price-value">₹10,000</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">Signature Makeup (International Base)</span>
+          <span class="price-value">₹8,000</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">Party Makeup</span>
+          <span class="price-value">₹2,000</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">Sangeet Makeup</span>
+          <span class="price-value">₹1,500</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">Engagement Makeup</span>
+          <span class="price-value">₹3,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hair -->
+    <div class="price-cat-card fade-in">
+      <div class="price-cat-header hair">
+        <div class="price-cat-icon">💇‍♀️</div>
+        <h3>Hair Services</h3>
+      </div>
+      <div class="price-items">
+        <div class="price-item">
+          <span class="price-name">Normal Hairstyle</span>
+          <span class="price-value">₹500</span>
+        </div>
+        <div class="price-item">
+          <span class="price-name">Advanced Hairstyle</span>
+          <span class="price-value">₹650</span>
+        </div>
+      </div>
+      <div class="price-cat-header extra" style="margin-top:0.5rem;">
+        <div class="price-cat-icon">👗</div>
+        <h3>Extra Services</h3>
+      </div>
+      <div class="price-items">
+        <div class="price-item">
+          <span class="price-name">Lehenga / Saree Draping</span>
+          <span class="price-value">₹300</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <h2 class="section-title fade-in">Gallery</h2>
+  <div class="divider fade-in"></div>
+  <p class="section-sub fade-in">Real looks, real brides, real magic</p>
+  <div class="gallery-grid">
+    <div class="gallery-item fade-in" onclick="openLightbox(this)">
+      <div class="gallery-item-placeholder">👰</div>
+      <div class="gallery-overlay"><span>Bridal Look</span></div>
+    </div>
+    <div class="gallery-item fade-in" onclick="openLightbox(this)">
+      <div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#ffd6e7,#ffb3cc);">✨</div>
+      <div class="gallery-overlay"><span>Party Glam</span></div>
+    </div>
+    <div class="gallery-item fade-in" onclick="openLightbox(this)">
+      <div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#ffe8d6,#ffd4b3);">💄</div>
+      <div class="gallery-overlay"><span>HD Makeup</span></div>
+    </div>
+    <div class="gallery-item fade-in" onclick="openLightbox(this)">
+      <div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#f0d6ff,#e8b3ff);">💍</div>
+      <div class="gallery-overlay"><span>Engagement</span></div>
+    </div>
+    <div class="gallery-item fade-in" onclick="openLightbox(this)">
+      <div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#d6f0e8,#b3e8d4);">🌿</div>
+      <div class="gallery-overlay"><span>Mehndi Art</span></div>
+    </div>
+    <div class="gallery-item fade-in" onclick="openLightbox(this)">
+      <div class="gallery-item-placeholder" style="background:linear-gradient(135deg,#fff0d4,#ffe8a0);">💫</div>
+      <div class="gallery-overlay"><span>Sangeet Look</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section id="reviews">
+  <h2 class="section-title fade-in">What Our Brides Say</h2>
+  <div class="divider fade-in"></div>
+  <p class="section-sub fade-in">Happiness in every look ❤️</p>
+  <div class="reviews-grid">
+    <div class="review-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Absolutely loved my bridal look! Radhika is highly professional, incredibly talented, and made me feel like a queen on my wedding day. 100% recommended!"</p>
+      <div class="review-author">
+        <div class="review-avatar">👰</div>
+        <div>
+          <div class="review-name">Priya Sharma</div>
+          <div class="review-loc">Bride · Lucknow</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Best makeup artist in Lucknow! Very friendly, skilled, and she truly understands your skin tone and style. My engagement makeup was absolutely perfect!"</p>
+      <div class="review-author">
+        <div class="review-avatar">💍</div>
+        <div>
+          <div class="review-name">Anjali Verma</div>
+          <div class="review-loc">Engagement · Lucknow</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Highly recommended for weddings! The HD airbrush makeup lasted all day and night. I received so many compliments. Radhika is a true artist!"</p>
+      <div class="review-author">
+        <div class="review-avatar">🌸</div>
+        <div>
+          <div class="review-name">Neha Gupta</div>
+          <div class="review-loc">Bride · Kanpur</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Party makeup was on point! She listened to exactly what I wanted and executed it perfectly. Affordable, professional, and a truly wonderful experience!"</p>
+      <div class="review-author">
+        <div class="review-avatar">🎉</div>
+        <div>
+          <div class="review-name">Ritu Mishra</div>
+          <div class="review-loc">Party Look · Lucknow</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING CTA ===== -->
+<section id="booking">
+  <h2 class="fade-in">Book Your Appointment Now</h2>
+  <p class="fade-in">Look your best for every occasion — let's create your dream look together!</p>
+  <a
+    href="https://wa.me/917804947087?text=Hello%20Radhika%2C%20I%20would%20like%20to%20book%20an%20appointment!"
+    target="_blank" class="btn-whatsapp fade-in">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    Chat on WhatsApp
+  </a>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
-    © 2025 Radhika's Makeup Studio | Designed with 💗
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Radhika's Makeup Studio</h3>
+      <p>Beauty, Confidence &amp; Glamour. Serving brides and beauties across Lucknow with love and artistry since 2016.</p>
+      <div class="footer-social" style="margin-top:1rem;">
+        <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">📸</a>
+        <a href="https://facebook.com" target="_blank" class="social-btn" title="Facebook">👍</a>
+        <a href="https://wa.me/917804947087" target="_blank" class="social-btn" title="WhatsApp">💬</a>
+        <a href="https://youtube.com" target="_blank" class="social-btn" title="YouTube">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="services.html" class="footer-link">💄 Services</a>
+      <a href="gallery.html" class="footer-link">🖼️ Gallery</a>
+      <a href="offers.html" class="footer-link">🎁 Offers</a>
+      <a href="about.html" class="footer-link">👩‍🎨 About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <a href="https://g.co/kgs/oBLY9E7" target="_blank" class="footer-link">📍 View on Google Maps</a>
+      <a href="tel:+917804947087" class="footer-link">📞 +91 78049 47087</a>
+      <a href="mailto:radhika@makeupartist.com" class="footer-link">📧 radhika@makeupartist.com</a>
+      <a href="https://instagram.com" target="_blank" class="footer-link">📸 Instagram Profile</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="services.html" class="footer-link">👰 Bridal Makeup</a>
+      <a href="services.html" class="footer-link">🎉 Party Makeup</a>
+      <a href="services.html" class="footer-link">🌿 Mehndi Design</a>
+      <a href="services.html" class="footer-link">💇‍♀️ Hair Styling</a>
+      <a href="services.html" class="footer-link">💅 Nail Art</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <span>Radhika's Makeup Studio</span>. All rights reserved. Made with ❤️ for every bride.</p>
+  </div>
 </footer>
 
+<!-- ===== BOOK NOW MODAL ===== -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <h2>💄 Book Your Appointment</h2>
+    <p>Fill in the details below — we'll connect on WhatsApp instantly!</p>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="clientName">Your Name *</label>
+        <input type="text" id="clientName" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label for="clientPhone">Phone Number *</label>
+        <input type="tel" id="clientPhone" placeholder="+91 XXXXX XXXXX" required>
+      </div>
+      <div class="form-group">
+        <label for="makeupType">Makeup Type *</label>
+        <select id="makeupType" required>
+          <option value="" disabled selected>Select a service</option>
+          <option value="Bridal Makeup">👰 Bridal Makeup</option>
+          <option value="HD Airbrush Makeup">✨ HD Airbrush Makeup</option>
+          <option value="Signature Makeup">💎 Signature Makeup</option>
+          <option value="Party Makeup">🎉 Party Makeup</option>
+          <option value="Engagement Makeup">💍 Engagement Makeup</option>
+          <option value="Sangeet Makeup">🎵 Sangeet Makeup</option>
+          <option value="Mehndi Design">🌿 Mehndi Design</option>
+          <option value="Hair Styling">💇‍♀️ Hair Styling</option>
+          <option value="Nail Art">💅 Nail Art</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="clientMsg">Message (Optional)</label>
+        <textarea id="clientMsg" placeholder="Tell us your event date, any special requests..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send on WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">×</button>
+  <img src="" alt="Gallery" id="lightboxImg">
+</div>
+
+<script>
+  // ===== HAMBURGER MENU =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-nav a').forEach(a => {
+    a.addEventListener('click', () => mobileNav.classList.remove('open'));
+  });
+
+  // ===== MODAL =====
+  const modal = document.getElementById('bookingModal');
+  const bookNowBtn = document.getElementById('bookNowBtn');
+  const modalClose = document.getElementById('modalClose');
+
+  bookNowBtn.addEventListener('click', () => modal.classList.add('open'));
+  modalClose.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+
+  // ===== WHATSAPP FORM =====
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('clientName').value.trim();
+    const phone = document.getElementById('clientPhone').value.trim();
+    const type = document.getElementById('makeupType').value;
+    const msg = document.getElementById('clientMsg').value.trim();
+    if (!name || !phone || !type) { alert('Please fill in all required fields.'); return; }
+    let text = `Hello Radhika! My name is ${name}. I want ${type}. My phone is ${phone}.`;
+    if (msg) text += ` Additional message: ${msg}`;
+    const waUrl = `https://wa.me/917804947087?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+    modal.classList.remove('open');
+  });
+
+  // ===== SCROLL ANIMATIONS =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ===== LIGHTBOX (Gallery) =====
+  const lightbox = document.getElementById('lightbox');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    if (img) {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || 'Gallery';
+    } else {
+      // placeholder emoji — show a decorative message
+      lightboxImg.src = '';
+      lightboxImg.alt = '';
+      // For placeholder items, just show nothing useful
+      return;
+    }
+    lightbox.classList.add('open');
+  }
+  lightboxClose.addEventListener('click', () => lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+
+  // ===== NAVBAR SCROLL EFFECT =====
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 40) {
+      nav.style.background = 'rgba(255,255,255,0.82)';
+      nav.style.boxShadow = '0 4px 32px rgba(255,77,141,0.12)';
+    } else {
+      nav.style.background = 'rgba(255,255,255,0.6)';
+      nav.style.boxShadow = '0 2px 24px rgba(255,77,141,0.08)';
+    }
+  });
+
+  // ===== ESCAPE KEY =====
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      modal.classList.remove('open');
+      lightbox.classList.remove('open');
+      mobileNav.classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>
