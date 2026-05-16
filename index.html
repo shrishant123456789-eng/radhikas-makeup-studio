@@ -3,1544 +3,1454 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radhika's Makeup Studio 🪷 | Ujjain's Premium Beauty Artist</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Radhika's Makeover ✨ | Premium Beauty & Makeup Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --rose-gold: #C9956A;
-    --champagne: #F5E6D3;
-    --burgundy: #7B1E3A;
-    --blush: #FFE4EC;
-    --ivory: #FFF8F0;
-    --jet: #1A1A1A;
-    --gold: #D4AF37;
-    --dark-bg: #1A0A0F;
+    --rose-gold: #c9956c;
+    --rose-gold-light: #e8b89a;
+    --pink-neon: #ff4da6;
+    --pink-glow: #ff69b4;
+    --peach: #ffb347;
+    --gold: #d4af37;
+    --gold-light: #f5d57a;
+    --dark-bg: #0d0608;
+    --dark-wine: #1a0a10;
+    --dark-brown: #1c0e14;
+    --glass-bg: rgba(255,255,255,0.04);
+    --glass-border: rgba(201,149,108,0.3);
+    --text-cream: #f5e6d3;
+    --text-gold: #d4af37;
+    --gradient-hero: linear-gradient(135deg, #0d0608 0%, #1a0a10 50%, #0d0608 100%);
+    --gradient-rose: linear-gradient(135deg, #c9956c, #ff69b4, #d4af37);
+    --gradient-pink: linear-gradient(135deg, #ff4da6, #c9956c);
+    --shadow-glow: 0 0 30px rgba(201,149,108,0.4), 0 0 60px rgba(255,77,166,0.2);
   }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Poppins', sans-serif;
-    background: var(--ivory);
-    color: var(--jet);
+    background: var(--dark-bg);
+    color: var(--text-cream);
     overflow-x: hidden;
-    cursor: none;
+    cursor: default;
   }
 
-  /* ── CUSTOM CURSOR ── */
-  #cursor {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(212,175,55,0.8), rgba(201,149,106,0.4));
+  /* ===== CUSTOM SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--gradient-rose); border-radius: 3px; }
+
+  /* ===== PARTICLES CANVAS ===== */
+  #particles-canvas {
     position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 99999;
-    transform: translate(-50%,-50%);
-    transition: transform 0.08s ease;
-    box-shadow: 0 0 12px rgba(212,175,55,0.7), 0 0 30px rgba(201,149,106,0.3);
-  }
-  #cursor-trail {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    border: 1px solid rgba(212,175,55,0.35);
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 99998;
-    transform: translate(-50%,-50%);
-    transition: transform 0.25s ease;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
   }
 
-  /* ── PARTICLES ── */
-  .particle {
-    position: absolute;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0;
-    animation: particleFloat linear infinite;
-    pointer-events: none;
-  }
-  @keyframes particleFloat {
-    0%   { opacity: 0; transform: translateY(0) scale(0.5); }
-    15%  { opacity: 0.7; }
-    85%  { opacity: 0.4; }
-    100% { opacity: 0; transform: translateY(-120px) scale(1.2); }
-  }
-
-  /* ── NAVBAR ── */
-  #navbar {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-    background: rgba(255,255,255,0.08);
+  /* ===== NAVBAR ===== */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 12px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(13,6,8,0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(212,175,55,0.3);
-    transition: background 0.4s ease, box-shadow 0.4s ease;
-    padding: 0 24px;
+    border-bottom: 1px solid rgba(201,149,108,0.25);
+    transition: all 0.4s ease;
   }
-  #navbar.scrolled {
-    background: rgba(26,10,15,0.95);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
-  }
-  .nav-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 70px;
+  .navbar.scrolled {
+    background: rgba(13,6,8,0.92);
+    box-shadow: 0 4px 30px rgba(201,149,108,0.2);
   }
   .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none;
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
   }
-  .nav-logo img { height: 40px; width: auto; object-fit: contain; }
+  .nav-logo img {
+    height: 44px; width: 44px; object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(201,149,108,0.7));
+  }
   .nav-logo-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem; font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 1px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    background: var(--gradient-rose);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     line-height: 1.2;
   }
-  .nav-links { display: flex; gap: 6px; list-style: none; }
-  .nav-links a {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.82rem; font-weight: 500;
-    color: rgba(255,255,255,0.88);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 20px;
-    position: relative;
-    transition: color 0.3s;
-    letter-spacing: 0.5px;
+  .nav-menu {
+    display: flex; align-items: center; gap: 6px; list-style: none;
   }
-  .nav-links a::after {
-    content: '';
-    position: absolute; bottom: 2px; left: 50%; right: 50%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--rose-gold), var(--gold));
-    border-radius: 2px;
-    transition: left 0.3s, right 0.3s;
-    box-shadow: 0 0 8px rgba(212,175,55,0.6);
+  .nav-menu a {
+    color: var(--text-cream); text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.5px;
+    padding: 8px 14px; border-radius: 25px;
+    transition: all 0.3s ease; position: relative;
   }
-  .nav-links a:hover::after,
-  .nav-links a.active::after { left: 10px; right: 10px; }
-  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-
-  /* Hamburger */
+  .nav-menu a:hover, .nav-menu a.active {
+    color: var(--rose-gold);
+    background: rgba(201,149,108,0.12);
+    box-shadow: 0 0 15px rgba(201,149,108,0.2);
+  }
+  .nav-book-btn {
+    background: linear-gradient(135deg, #ff4da6, #c9956c);
+    color: #fff !important;
+    padding: 10px 22px !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 20px rgba(255,77,166,0.4);
+    transition: all 0.3s ease !important;
+  }
+  .nav-book-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255,77,166,0.6) !important;
+  }
   .hamburger {
-    display: none; flex-direction: column; gap: 5px;
-    cursor: pointer; padding: 8px; background: none; border: none;
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 5px; background: none; border: none;
   }
   .hamburger span {
     display: block; width: 24px; height: 2px;
-    background: var(--gold);
-    border-radius: 2px;
+    background: var(--rose-gold); border-radius: 2px;
     transition: all 0.3s ease;
   }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  /* Mobile Menu */
-  #mobile-menu {
-    display: none; position: fixed;
-    top: 70px; left: 0; width: 100%;
-    background: rgba(26,10,15,0.97);
-    backdrop-filter: blur(20px);
-    z-index: 999;
-    padding: 20px 0 30px;
-    transform: translateY(-10px);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(13,6,8,0.97);
+    backdrop-filter: blur(30px);
+    z-index: 999; flex-direction: column;
+    align-items: center; justify-content: center; gap: 20px;
   }
-  #mobile-menu.open { transform: translateY(0); opacity: 1; display: block; }
-  #mobile-menu a {
-    display: block; text-align: center;
-    font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 500;
-    color: rgba(255,255,255,0.88);
-    text-decoration: none;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(212,175,55,0.1);
-    transition: color 0.3s, background 0.3s;
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--text-cream); text-decoration: none;
+    font-size: 1.4rem; font-family: 'Playfair Display', serif;
+    font-weight: 600; padding: 12px 40px;
+    border-bottom: 1px solid rgba(201,149,108,0.2);
+    width: 100%; text-align: center;
+    transition: all 0.3s ease;
   }
-  #mobile-menu a:hover { color: var(--gold); background: rgba(212,175,55,0.06); }
+  .mobile-menu a:hover { color: var(--rose-gold); }
+  .mobile-close {
+    position: absolute; top: 20px; right: 25px;
+    background: none; border: none; color: var(--rose-gold);
+    font-size: 2rem; cursor: pointer;
+  }
 
-  /* ── HERO ── */
-  #hero {
+  /* ===== HERO SECTION ===== */
+  .hero {
     position: relative; width: 100%; height: 100vh;
-    min-height: 600px;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
   }
-  #hero-video {
-    position: absolute; inset: 0; width: 100%; height: 100%;
+  .hero-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; z-index: 1;
+  }
+  .hero-img-fallback {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
     object-fit: cover; z-index: 0;
   }
   .hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(123,30,58,0.45) 100%);
-    z-index: 1;
+    position: absolute; inset: 0; z-index: 2;
+    background: linear-gradient(
+      180deg,
+      rgba(13,6,8,0.55) 0%,
+      rgba(26,10,16,0.45) 40%,
+      rgba(13,6,8,0.75) 100%
+    );
   }
-
-  /* Floating makeup tools */
-  .tool {
-    position: absolute; z-index: 2;
-    pointer-events: none;
-    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.45));
-    object-fit: contain;
-  }
-  .tool-1 { width: 110px; left: 3%; top: 25%; animation: floatUpDown 4s ease-in-out infinite; }
-  .tool-2 { width: 90px;  right: 4%; top: 30%; animation: sway 3s ease-in-out infinite; }
-  .tool-3 { width: 100px; right: 8%; top: 12%; animation: floatUpDown 5s ease-in-out infinite 0.5s; }
-  .tool-4 { width: 120px; left: 5%; bottom: 18%; animation: sway 6s ease-in-out infinite 1s; }
-  .tool-5 { width: 85px;  right: 2%; bottom: 25%; animation: floatUpDown 3.5s ease-in-out infinite 0.8s; }
-  .tool-6 { width: 95px;  right: 14%; bottom: 15%; animation: floatUpDown 4.5s ease-in-out infinite 0.3s; }
-
-  @keyframes floatUpDown {
-    0%,100% { transform: translateY(0); }
-    50%      { transform: translateY(-18px); }
-  }
-  @keyframes sway {
-    0%,100% { transform: rotate(-5deg); }
-    50%      { transform: rotate(5deg); }
-  }
-
-  /* Hero content */
   .hero-content {
-    position: relative; z-index: 10;
-    text-align: center; padding: 40px 28px;
-    background: rgba(0,0,0,0.32);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 24px;
-    border: 1px solid rgba(212,175,55,0.2);
-    max-width: 720px;
-    width: 90%;
+    position: relative; z-index: 4;
+    text-align: center; padding: 0 20px;
+    animation: heroFadeUp 1.2s ease forwards;
   }
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 4.2rem);
-    font-weight: 900;
-    background: linear-gradient(135deg, #F5C6A0, #D4AF37, #F5C6A0);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 3s linear infinite;
+  .hero-title-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    background: linear-gradient(135deg, #f5d57a, #e8b89a, #ff69b4);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     text-shadow: none;
-    line-height: 1.2;
+    filter: drop-shadow(0 0 20px rgba(212,175,55,0.6));
+    line-height: 1.1; margin-bottom: 4px;
+    animation: shimmer 3s ease-in-out infinite alternate;
+  }
+  .hero-title-main {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 7.5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #d4af37 0%, #f5d57a 30%, #e8b89a 60%, #d4af37 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(212,175,55,0.5));
+    line-height: 1; margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+  .hero-stars {
+    font-size: 1.2rem; color: var(--gold);
+    letter-spacing: 4px; margin-bottom: 10px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 600; letter-spacing: 6px;
+    color: var(--text-cream);
+    text-shadow: 0 0 20px rgba(255,77,166,0.6);
     margin-bottom: 10px;
+  }
+  .hero-subtitle span { color: var(--pink-glow); }
+  .hero-services-line {
+    font-size: clamp(0.75rem, 1.5vw, 0.92rem);
+    color: rgba(245,230,211,0.75);
+    letter-spacing: 2px; margin-bottom: 36px;
+    font-weight: 300;
+  }
+  .hero-buttons {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #ff4da6, #c9956c);
+    color: #fff; border: none; padding: 15px 36px;
+    border-radius: 50px; font-size: 1rem; font-weight: 700;
+    cursor: pointer; letter-spacing: 1px;
+    box-shadow: 0 8px 30px rgba(255,77,166,0.5), 0 0 20px rgba(255,77,166,0.3);
+    transition: all 0.3s ease; position: relative; overflow: hidden;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(255,77,166,0.7), 0 0 40px rgba(255,77,166,0.4);
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%); transition: transform 0.4s ease;
+  }
+  .btn-primary:hover::after { transform: translateX(100%); }
+  .btn-secondary {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(10px);
+    color: var(--text-cream); border: 1px solid rgba(201,149,108,0.5);
+    padding: 15px 36px; border-radius: 50px;
+    font-size: 1rem; font-weight: 600; cursor: pointer;
+    letter-spacing: 1px; transition: all 0.3s ease;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover {
+    background: rgba(201,149,108,0.15);
+    border-color: var(--rose-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(201,149,108,0.3);
+    color: var(--rose-gold-light);
+  }
+
+  /* ===== FLOATING MAKEUP TOOLS ===== */
+  .floating-tools { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+  .tool {
+    position: absolute;
+    filter: drop-shadow(0 8px 20px rgba(201,149,108,0.5));
+    animation: floatTool 6s ease-in-out infinite;
+  }
+  .tool img { width: 100%; height: 100%; object-fit: contain; }
+
+  /* Tool positions */
+  .tool-lipstick { width: 70px; top: 12%; left: 6%; animation-delay: 0s; animation-duration: 7s; transform: rotate(-30deg); }
+  .tool-brush1 { width: 90px; top: 8%; left: 20%; animation-delay: 1s; animation-duration: 8s; transform: rotate(15deg); }
+  .tool-compact { width: 65px; top: 20%; left: 3%; animation-delay: 2s; animation-duration: 6.5s; }
+  .tool-blender { width: 55px; top: 35%; left: 8%; animation-delay: 0.5s; animation-duration: 9s; }
+  .tool-eyeliner { width: 80px; top: 10%; right: 8%; animation-delay: 1.5s; animation-duration: 7.5s; transform: rotate(25deg); }
+  .tool-nailpolish { width: 55px; top: 25%; right: 5%; animation-delay: 3s; animation-duration: 6s; }
+  .tool-palette { width: 80px; top: 55%; right: 4%; animation-delay: 2s; animation-duration: 8.5s; }
+  .tool-mehndi { width: 60px; top: 65%; left: 5%; animation-delay: 1s; animation-duration: 7s; transform: rotate(-15deg); }
+  .tool-brush2 { width: 75px; top: 70%; right: 10%; animation-delay: 0.5s; animation-duration: 9s; transform: rotate(20deg); }
+  .tool-cream { width: 55px; top: 42%; right: 14%; animation-delay: 2.5s; animation-duration: 6.5s; }
+
+  @keyframes floatTool {
+    0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+    25% { transform: translateY(-12px) rotate(calc(var(--rot, 0deg) + 3deg)); }
+    75% { transform: translateY(8px) rotate(calc(var(--rot, 0deg) - 3deg)); }
+  }
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   @keyframes shimmer {
-    0%   { background-position: 0% center; }
-    100% { background-position: 200% center; }
+    0% { filter: drop-shadow(0 0 15px rgba(212,175,55,0.5)); }
+    100% { filter: drop-shadow(0 0 35px rgba(255,105,180,0.7)); }
   }
-  .hero-tagline {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(1.2rem, 3vw, 1.7rem);
-    color: #FFE4EC;
-    font-style: italic;
-    text-shadow: 0 0 20px rgba(255,228,236,0.5);
-    margin-bottom: 12px;
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
   }
-  .hero-services-text {
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(0.7rem, 2vw, 0.9rem);
-    letter-spacing: 2.5px;
-    color: var(--champagne);
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    opacity: 0.9;
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
   }
-  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .btn-book {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem; font-weight: 600;
-    padding: 14px 32px;
-    background: linear-gradient(135deg, var(--rose-gold), var(--burgundy));
-    color: #fff; border: none;
-    border-radius: 50px; cursor: pointer;
-    box-shadow: 0 8px 30px rgba(201,149,106,0.5), 0 0 20px rgba(123,30,58,0.3);
-    transition: transform 0.25s, box-shadow 0.25s;
-    letter-spacing: 0.5px;
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(201,149,108,0.4); }
+    50% { box-shadow: 0 0 40px rgba(255,105,180,0.6), 0 0 60px rgba(201,149,108,0.3); }
   }
-  .btn-book:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 40px rgba(201,149,106,0.65);
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
-  .btn-services {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem; font-weight: 600;
-    padding: 12px 30px;
-    background: rgba(255,255,255,0.08);
-    color: var(--gold);
-    border: 2px solid var(--gold);
-    border-radius: 50px;
-    text-decoration: none;
-    backdrop-filter: blur(10px);
-    transition: background 0.3s, transform 0.25s;
-    display: inline-flex; align-items: center;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  .btn-services:hover {
-    background: rgba(212,175,55,0.15);
-    transform: translateY(-3px);
+  @keyframes particleFloat {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(0); opacity: 0; }
   }
 
-  /* Scroll indicator */
-  .scroll-indicator {
-    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-    z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  /* ===== SECTION COMMON ===== */
+  section { position: relative; z-index: 1; }
+  .section-header {
+    text-align: center; margin-bottom: 50px;
   }
-  .scroll-indicator span {
-    font-family: 'Poppins'; font-size: 0.65rem;
-    color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase;
+  .section-ornament {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin-bottom: 12px;
   }
-  .chevron {
-    width: 20px; height: 20px;
-    border-right: 2px solid var(--gold);
-    border-bottom: 2px solid var(--gold);
-    transform: rotate(45deg);
-    animation: bounce 1.4s ease-in-out infinite;
+  .ornament-line {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rose-gold));
   }
-  @keyframes bounce {
-    0%,100% { transform: rotate(45deg) translateY(0); opacity: 1; }
-    50%      { transform: rotate(45deg) translateY(8px); opacity: 0.4; }
+  .ornament-line.right {
+    background: linear-gradient(90deg, var(--rose-gold), transparent);
   }
-
-  /* ── SECTION SHARED ── */
-  section { position: relative; overflow: hidden; }
+  .ornament-icon { color: var(--gold); font-size: 1rem; }
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    background: linear-gradient(135deg, #d4af37, #f5d57a, #c9956c);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--rose-gold), var(--gold), var(--rose-gold));
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 4s linear infinite;
-    text-align: center;
-    margin-bottom: 8px;
   }
-  .section-sub {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    color: var(--rose-gold);
-    text-align: center;
-    font-style: italic;
-    margin-bottom: 40px;
+  .section-subtitle {
+    font-size: 0.85rem; color: rgba(245,230,211,0.5);
+    letter-spacing: 3px; text-transform: uppercase; margin-top: 6px;
   }
 
-  /* SVG Wave dividers */
-  .wave-divider { display: block; width: 100%; line-height: 0; }
-
-  /* Reveal animation */
-  .reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+  /* ===== PROFILE SECTION ===== */
+  .profile-section {
+    padding: 80px 40px;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-wine) 50%, var(--dark-bg) 100%);
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── ARTIST PROFILE ── */
-  #artist {
-    background: linear-gradient(135deg, #F8E8FF 0%, #FFE4EC 50%, #FFF0E8 100%);
-    padding: 90px 24px 80px;
+  .profile-card {
+    max-width: 960px; margin: 0 auto;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(201,149,108,0.2);
+    border-radius: 24px;
+    padding: 50px;
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 40px; align-items: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative; overflow: hidden;
   }
-  #artist .particles-container {
-    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  .profile-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gradient-rose);
   }
-  .artist-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: flex; align-items: center; gap: 60px;
-    flex-wrap: wrap; justify-content: center;
+  .profile-img-wrap {
+    position: relative; width: 130px; height: 130px; flex-shrink: 0;
+    animation: float 4s ease-in-out infinite;
   }
-  .artist-photo-wrap {
-    flex: 0 0 auto; position: relative;
-  }
-  .artist-photo-ring {
-    width: 240px; height: 240px;
+  .profile-img-wrap::before {
+    content: ''; position: absolute; inset: -4px;
     border-radius: 50%;
-    padding: 5px;
-    background: conic-gradient(var(--gold), var(--rose-gold), var(--burgundy), var(--gold));
-    animation: spin 6s linear infinite;
-    box-shadow: 0 0 50px rgba(212,175,55,0.45);
+    background: var(--gradient-rose);
+    animation: spin-slow 8s linear infinite;
+    z-index: -1;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .artist-photo-ring img {
-    width: 100%; height: 100%;
+  .profile-img-wrap::after {
+    content: ''; position: absolute; inset: -8px;
     border-radius: 50%;
-    object-fit: cover;
-    display: block;
+    border: 1px solid rgba(201,149,108,0.3);
+    animation: glowPulse 3s ease-in-out infinite;
   }
-  .artist-info { flex: 1; min-width: 280px; }
-  .artist-name {
+  .profile-img-wrap img {
+    width: 130px; height: 130px;
+    border-radius: 50%; object-fit: cover;
+    border: 3px solid var(--dark-bg);
+  }
+  .profile-info { flex: 1; }
+  .profile-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    background: var(--gradient-rose);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+  .profile-title {
+    font-size: 0.85rem; color: var(--rose-gold);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 16px; font-weight: 500;
+  }
+  .profile-bio {
+    font-size: 0.9rem; line-height: 1.8;
+    color: rgba(245,230,211,0.75);
+    max-width: 480px;
+  }
+  .profile-stats {
+    display: flex; gap: 30px; margin-top: 20px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    color: var(--burgundy); font-weight: 700;
-    margin-bottom: 6px;
+    font-size: 1.6rem; font-weight: 700;
+    background: var(--gradient-rose);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .artist-title-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.35rem; color: var(--rose-gold); margin-bottom: 8px;
+  .stat-label { font-size: 0.7rem; color: rgba(245,230,211,0.5); letter-spacing: 1px; }
+  .profile-badges {
+    display: flex; flex-direction: column; gap: 12px;
   }
-  .artist-cert {
-    font-size: 0.82rem; color: #666;
-    font-family: 'Poppins'; margin-bottom: 18px;
-    letter-spacing: 0.5px;
+  .badge {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,149,108,0.2);
+    border-radius: 10px; padding: 8px 14px;
+    font-size: 0.78rem; color: var(--text-cream);
+    white-space: nowrap;
+    transition: all 0.3s ease;
   }
-  .artist-bio {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.08rem; line-height: 1.8;
-    color: #444; margin-bottom: 24px;
-    font-style: italic;
+  .badge:hover {
+    background: rgba(201,149,108,0.1);
+    border-color: var(--rose-gold);
+    transform: translateX(-4px);
   }
-  .stat-pills { display: flex; gap: 12px; flex-wrap: wrap; }
-  .stat-pill {
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(212,175,55,0.45);
-    border-radius: 50px;
-    padding: 10px 20px;
-    font-family: 'Poppins'; font-size: 0.78rem; font-weight: 600;
-    color: var(--burgundy);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: default;
-  }
-  .stat-pill:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(212,175,55,0.3);
-  }
+  .badge i { color: var(--gold); font-size: 0.9rem; }
 
-  /* ── SERVICES PREVIEW ── */
-  #services-preview {
-    padding: 90px 24px 80px;
-    background: linear-gradient(160deg, var(--ivory) 0%, var(--blush) 50%, var(--champagne) 100%);
+  /* ===== SERVICES SECTION ===== */
+  .services-section {
+    padding: 80px 40px;
+    background: var(--dark-bg);
   }
   .services-grid {
-    max-width: 1100px; margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px; max-width: 1200px; margin: 0 auto;
   }
   .service-card {
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(212,175,55,0.4);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-    cursor: pointer;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,149,108,0.2);
+    border-radius: 16px; overflow: hidden;
+    transition: all 0.4s ease; cursor: pointer;
+    position: relative;
   }
   .service-card:hover {
-    transform: perspective(800px) rotateY(3deg) translateY(-8px);
-    box-shadow: 0 20px 50px rgba(201,149,106,0.38);
+    transform: translateY(-8px);
+    border-color: rgba(255,77,166,0.5);
+    box-shadow: 0 20px 50px rgba(255,77,166,0.2), 0 0 30px rgba(201,149,108,0.15);
   }
-  .service-card-img {
-    width: 100%; height: 200px; object-fit: cover;
-    display: block;
-  }
-  .service-card-body { padding: 18px 20px 20px; }
-  .service-card-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem; font-weight: 700;
-    color: var(--burgundy); margin-bottom: 8px;
-  }
-  .service-price-badge {
-    display: inline-block;
-    background: var(--burgundy);
-    color: var(--gold);
-    font-family: 'Poppins'; font-size: 0.8rem; font-weight: 600;
-    padding: 4px 14px; border-radius: 20px;
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
-  }
-  .service-desc {
-    font-family: 'Poppins'; font-size: 0.82rem;
-    color: #555; line-height: 1.6; margin-bottom: 14px;
-  }
-  .btn-book-mini {
-    font-family: 'Poppins'; font-size: 0.8rem; font-weight: 600;
-    padding: 8px 20px;
-    background: linear-gradient(135deg, var(--rose-gold), var(--burgundy));
-    color: #fff; border: none; border-radius: 30px;
-    cursor: pointer;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .btn-book-mini:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,149,106,0.4); }
-
-  /* ── PRICE LIST ── */
-  #price-list {
-    padding: 90px 24px 80px;
-    background: linear-gradient(135deg, #2A0A1A 0%, #4A1228 40%, #C9956A 100%);
-    position: relative;
-  }
-  #price-list .section-title { color: var(--gold); -webkit-text-fill-color: unset;
-    background: linear-gradient(135deg, var(--champagne), var(--gold), var(--champagne));
-    background-size: 200% auto;
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  #price-list .section-sub { color: var(--champagne); }
-  .price-columns {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-  }
-  .price-col-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem; font-weight: 700; color: var(--gold);
-    border-bottom: 1px solid rgba(212,175,55,0.35);
-    padding-bottom: 10px; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .price-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 16px; border-radius: 10px;
-    transition: background 0.3s;
-    position: relative; overflow: hidden;
-    cursor: default;
-  }
-  .price-item::before {
-    content: '';
-    position: absolute; left: -100%; top: 0; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent);
-    transition: left 0.6s ease;
-  }
-  .price-item:hover::before { left: 100%; }
-  .price-item:hover { background: rgba(212,175,55,0.08); }
-  .price-name { font-family: 'Poppins'; font-size: 0.87rem; color: var(--champagne); font-weight: 400; }
-  .price-tag {
-    font-family: 'Poppins'; font-size: 0.9rem; font-weight: 700;
-    color: var(--gold); white-space: nowrap; margin-left: 10px;
-  }
-  .price-col-img {
-    width: 100%; height: 180px; object-fit: cover;
-    border-radius: 14px; margin-bottom: 20px;
-    border: 1px solid rgba(212,175,55,0.3);
-  }
-  .marquee-wrap {
-    margin-top: 50px;
-    background: linear-gradient(90deg, var(--burgundy), var(--rose-gold), var(--gold), var(--rose-gold), var(--burgundy));
-    padding: 18px 0;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .marquee-track {
-    display: flex; gap: 60px;
-    animation: marqueeScroll 18s linear infinite;
-    width: max-content;
-  }
-  @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .marquee-text {
-    font-family: 'Poppins'; font-size: 0.88rem; font-weight: 600;
-    color: #fff; white-space: nowrap; letter-spacing: 1px;
-  }
-
-  /* ── GALLERY PREVIEW ── */
-  #gallery-preview {
-    padding: 90px 24px 80px;
-    background: linear-gradient(135deg, var(--ivory), var(--champagne));
-  }
-  .gallery-grid {
-    max-width: 1100px; margin: 0 auto 36px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  @media(max-width: 680px) { .gallery-grid { grid-template-columns: repeat(1, 1fr); } }
-  @media(min-width: 480px) and (max-width: 680px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
-  .gallery-card {
-    border-radius: 16px; overflow: hidden;
-    position: relative;
-    border: 2px solid transparent;
-    transition: border-color 0.3s, transform 0.35s;
-  }
-  .gallery-card:hover { border-color: var(--gold); transform: scale(1.03); }
-  .gallery-card img {
-    width: 100%; height: 220px; object-fit: cover; display: block;
+  .service-img {
+    width: 100%; aspect-ratio: 3/4;
+    object-fit: cover; display: block;
     transition: transform 0.5s ease;
   }
-  .gallery-card:hover img { transform: scale(1.06); }
+  .service-card:hover .service-img { transform: scale(1.08); }
+  .service-info {
+    padding: 12px 10px;
+    background: linear-gradient(180deg, rgba(13,6,8,0.8) 0%, rgba(26,10,16,0.95) 100%);
+    text-align: center;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--text-cream); margin-bottom: 4px;
+  }
+  .service-price {
+    font-size: 0.78rem; font-weight: 700;
+    color: var(--rose-gold);
+  }
+  .service-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(13,6,8,0.9) 100%);
+  }
+
+  /* ===== PRICE LIST SECTION ===== */
+  .price-section {
+    padding: 80px 40px;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-wine) 50%, var(--dark-bg) 100%);
+  }
+  .price-layout {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 40px; max-width: 1100px; margin: 0 auto;
+    align-items: start;
+  }
+  .price-column {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .price-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,149,108,0.12);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  .price-row:hover {
+    background: rgba(201,149,108,0.08);
+    border-color: rgba(201,149,108,0.35);
+    transform: translateX(4px);
+  }
+  .price-service-name { font-size: 0.85rem; color: var(--text-cream); font-weight: 400; }
+  .price-amount {
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--rose-gold); white-space: nowrap;
+  }
+  .price-divider-img {
+    width: 200px;
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    align-self: center;
+  }
+  .price-divider-img img {
+    width: 100%; height: 300px; object-fit: cover; display: block;
+  }
+  .price-includes {
+    max-width: 900px; margin: 40px auto 0;
+    background: rgba(201,149,108,0.06);
+    border: 1px solid rgba(201,149,108,0.25);
+    border-radius: 16px; padding: 20px 30px;
+    text-align: center;
+  }
+  .price-includes-icon { color: var(--gold); font-size: 1.2rem; margin-bottom: 8px; }
+  .price-includes p { font-size: 0.85rem; color: rgba(245,230,211,0.7); line-height: 1.6; }
+  .price-includes strong { color: var(--rose-gold); }
+
+  /* ===== GALLERY SECTION ===== */
+  .gallery-section {
+    padding: 80px 40px;
+    background: var(--dark-bg);
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px; max-width: 1200px; margin: 0 auto;
+  }
+  .gallery-item {
+    position: relative; border-radius: 14px; overflow: hidden;
+    cursor: pointer; aspect-ratio: 3/4;
+    border: 1px solid rgba(201,149,108,0.15);
+    transition: all 0.4s ease;
+  }
+  .gallery-item:hover {
+    transform: scale(1.03);
+    border-color: rgba(255,77,166,0.5);
+    box-shadow: 0 15px 40px rgba(255,77,166,0.25), 0 0 30px rgba(201,149,108,0.2);
+    z-index: 2;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.1); }
   .gallery-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%);
-    display: flex; flex-direction: column;
-    justify-content: flex-end; padding: 16px;
-    opacity: 0; transition: opacity 0.35s;
+    background: linear-gradient(180deg, transparent 40%, rgba(13,6,8,0.9) 100%);
+    opacity: 0; transition: opacity 0.3s ease;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 20px;
   }
-  .gallery-card:hover .gallery-overlay { opacity: 1; }
-  .gallery-overlay-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.2rem; color: var(--gold); margin-bottom: 4px;
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-label {
+    font-family: 'Great Vibes', cursive; font-size: 1.3rem;
+    background: var(--gradient-rose);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    transform: translateY(10px); transition: transform 0.3s ease;
   }
-  .gallery-overlay-link {
-    font-family: 'Poppins'; font-size: 0.75rem; color: #fff; text-decoration: none;
-  }
-  .gallery-overlay-link:hover { color: var(--gold); }
-  .gallery-cta-wrap { text-align: center; }
-  .btn-gallery {
-    font-family: 'Poppins'; font-size: 0.9rem; font-weight: 600;
-    padding: 14px 36px;
-    background: transparent;
-    border: 2px solid var(--gold);
-    color: var(--gold); border-radius: 50px;
-    text-decoration: none;
-    transition: background 0.3s, color 0.3s, transform 0.25s;
-    display: inline-block;
-  }
-  .btn-gallery:hover {
-    background: var(--gold); color: var(--dark-bg);
-    transform: translateY(-3px);
-  }
+  .gallery-item:hover .gallery-label { transform: translateY(0); }
 
-  /* ── REVIEWS ── */
-  #reviews {
-    padding: 90px 24px 80px;
-    background: linear-gradient(135deg, #FFF0F5, var(--blush), #FFF8F0);
-    position: relative;
+  /* ===== TESTIMONIALS ===== */
+  .testimonials-section {
+    padding: 80px 40px;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-wine) 100%);
   }
-  .reviews-row {
-    max-width: 1100px; margin: 0 auto;
-    display: flex; gap: 24px;
-    overflow-x: auto; padding-bottom: 12px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px; max-width: 1100px; margin: 0 auto;
   }
-  .reviews-row::-webkit-scrollbar { display: none; }
-  .review-card {
-    flex: 0 0 320px;
-    background: rgba(255,255,255,0.5);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(212,175,55,0.38);
-    border-radius: 20px;
-    padding: 28px 24px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: default;
+  .testimonial-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,149,108,0.2);
+    border-radius: 20px; padding: 24px;
+    transition: all 0.4s ease; position: relative; overflow: hidden;
   }
-  .review-card:hover {
+  .testimonial-card::before {
+    content: '"'; position: absolute; top: 10px; right: 16px;
+    font-family: 'Playfair Display', serif; font-size: 5rem;
+    color: rgba(201,149,108,0.1); line-height: 1;
+  }
+  .testimonial-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 45px rgba(212,175,55,0.2);
+    border-color: rgba(255,77,166,0.4);
+    box-shadow: 0 20px 50px rgba(255,77,166,0.15);
   }
-  .review-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 14px; letter-spacing: 2px; }
-  .review-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem; line-height: 1.75;
-    color: #444; font-style: italic; margin-bottom: 18px;
+  .t-stars { color: #ffd700; font-size: 0.85rem; margin-bottom: 12px; letter-spacing: 2px; }
+  .t-text { font-size: 0.82rem; line-height: 1.7; color: rgba(245,230,211,0.75); margin-bottom: 16px; }
+  .t-client { display: flex; align-items: center; gap: 12px; }
+  .t-avatar {
+    width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+    border: 2px solid var(--rose-gold);
   }
-  .review-author {
-    font-family: 'Poppins'; font-size: 0.8rem; font-weight: 600;
-    color: var(--burgundy);
-  }
-  .review-role { font-size: 0.72rem; color: #888; font-weight: 400; }
+  .t-name { font-size: 0.82rem; font-weight: 600; color: var(--rose-gold-light); }
+  .t-sub { font-size: 0.72rem; color: rgba(245,230,211,0.4); }
 
-  /* ── BOOKING CTA ── */
-  #booking-cta {
-    padding: 90px 24px;
-    background: linear-gradient(135deg, var(--burgundy) 0%, var(--rose-gold) 60%, var(--champagne) 100%);
-    text-align: center;
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    padding: 100px 40px;
+    position: relative; overflow: hidden; text-align: center;
+    background: linear-gradient(135deg, #1a0a10, #0d0608, #1c0e14);
   }
-  .booking-title {
+  .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255,77,166,0.15) 0%, transparent 70%);
+  }
+  .cta-bg-tools { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .cta-tool {
+    position: absolute; opacity: 0.18;
+    filter: blur(1px) drop-shadow(0 0 15px rgba(201,149,108,0.5));
+    animation: floatTool 8s ease-in-out infinite;
+  }
+  .cta-title-small {
+    font-family: 'Great Vibes', cursive; font-size: 2.5rem;
+    color: var(--rose-gold-light); margin-bottom: 4px;
+  }
+  .cta-title-main {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    color: #fff; font-weight: 700;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    margin-bottom: 12px;
-  }
-  .booking-sub {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.35rem; color: rgba(255,255,255,0.88);
-    margin-bottom: 36px;
-  }
-  .btn-whatsapp {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-family: 'Poppins'; font-size: 1rem; font-weight: 700;
-    padding: 18px 44px;
-    background: #25D366; color: #fff;
-    border-radius: 50px; text-decoration: none;
-    box-shadow: 0 0 0 0 rgba(37,211,102,0.6);
-    animation: wpPulse 2s ease-in-out infinite;
-    transition: transform 0.25s;
-    border: none; cursor: pointer;
-  }
-  .btn-whatsapp:hover { transform: scale(1.04); }
-  @keyframes wpPulse {
-    0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.55); }
-    50%      { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
-  }
-  .btn-whatsapp svg { width: 24px; height: 24px; fill: #fff; }
-
-  /* ── BOOKING MODAL ── */
-  #booking-modal {
-    display: none; position: fixed; inset: 0; z-index: 9000;
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(6px);
-    align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  #booking-modal.open { display: flex; }
-  .modal-card {
-    background: rgba(26,10,15,0.92);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(212,175,55,0.4);
-    border-radius: 24px;
-    padding: 36px 32px;
-    width: 100%; max-width: 480px;
-    position: relative;
-    animation: modalIn 0.35s ease;
-  }
-  @keyframes modalIn {
-    from { transform: translateY(30px) scale(0.96); opacity: 0; }
-    to   { transform: translateY(0) scale(1); opacity: 1; }
-  }
-  .modal-close {
-    position: absolute; top: 16px; right: 20px;
-    background: none; border: none; color: var(--gold);
-    font-size: 1.5rem; cursor: pointer; line-height: 1;
-  }
-  .modal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem; color: var(--gold);
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+    background: linear-gradient(135deg, #d4af37, #f5d57a, #ff69b4);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     margin-bottom: 6px;
   }
-  .modal-sub {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1rem; color: var(--champagne);
-    margin-bottom: 24px;
+  .cta-subtitle { font-size: 0.9rem; color: rgba(245,230,211,0.5); margin-bottom: 36px; letter-spacing: 2px; }
+  .btn-whatsapp {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff; text-decoration: none;
+    padding: 18px 45px; border-radius: 50px;
+    font-size: 1.1rem; font-weight: 700; letter-spacing: 1px;
+    box-shadow: 0 10px 40px rgba(37,211,102,0.4), 0 0 20px rgba(37,211,102,0.2);
+    transition: all 0.3s ease; position: relative; overflow: hidden;
   }
-  .form-group { margin-bottom: 16px; }
-  .form-group label {
-    display: block; font-family: 'Poppins'; font-size: 0.78rem;
-    color: var(--champagne); margin-bottom: 6px; font-weight: 500;
+  .btn-whatsapp:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(37,211,102,0.6);
   }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%; padding: 11px 14px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(212,175,55,0.35);
-    border-radius: 10px;
-    color: #fff; font-family: 'Poppins'; font-size: 0.85rem;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--gold); }
-  .form-group select { cursor: pointer; }
-  .form-group select option { background: #2A0A1A; color: #fff; }
-  .form-group textarea { resize: vertical; min-height: 80px; }
-  .modal-submit {
-    width: 100%; padding: 14px;
-    background: linear-gradient(135deg, var(--rose-gold), var(--burgundy));
-    color: #fff; font-family: 'Poppins'; font-size: 0.92rem; font-weight: 700;
-    border: none; border-radius: 50px; cursor: pointer;
-    transition: transform 0.25s, box-shadow 0.25s;
-    margin-top: 6px;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-  }
-  .modal-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(201,149,106,0.4);
-  }
-  .modal-submit svg { width: 18px; height: 18px; fill: #fff; }
+  .btn-whatsapp i { font-size: 1.4rem; }
 
-  /* ── CONFETTI CANVAS ── */
-  #confetti-canvas {
-    position: fixed; inset: 0; z-index: 8999;
-    pointer-events: none; display: none;
-  }
-
-  /* ── FOOTER ── */
-  #footer {
+  /* ===== CONTACT SECTION ===== */
+  .contact-section {
+    padding: 80px 40px;
     background: var(--dark-bg);
-    padding: 70px 24px 0;
-    position: relative;
+    border-top: 1px solid rgba(201,149,108,0.15);
   }
-  #footer::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent, transparent 4px,
-      rgba(212,175,55,0.03) 4px, rgba(212,175,55,0.03) 8px
-    );
-    pointer-events: none;
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px; max-width: 1000px; margin: 0 auto;
   }
-  .footer-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px; padding-bottom: 50px;
-    position: relative;
+  .contact-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,149,108,0.2);
+    border-radius: 20px; padding: 28px 20px;
+    text-align: center; transition: all 0.4s ease;
   }
-  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .footer-logo img { height: 38px; object-fit: contain; }
-  .footer-logo-text {
-    font-family: 'Playfair Display', serif;
-    color: var(--gold); font-size: 1rem; font-weight: 700;
-    line-height: 1.3;
+  .contact-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--rose-gold);
+    box-shadow: 0 15px 40px rgba(201,149,108,0.2);
   }
-  .footer-address {
-    font-family: 'Poppins'; font-size: 0.8rem;
-    color: rgba(255,255,255,0.55); line-height: 1.7;
-    margin-bottom: 10px;
-  }
-  .footer-map-link {
-    font-family: 'Poppins'; font-size: 0.78rem; font-weight: 500;
-    color: var(--rose-gold); text-decoration: none;
-    display: inline-flex; align-items: center; gap: 5px;
-    transition: color 0.3s;
-  }
-  .footer-map-link:hover { color: var(--gold); }
-  .footer-col-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem; color: var(--gold);
-    margin-bottom: 18px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 8px;
-  }
-  .footer-links { list-style: none; }
-  .footer-links li { margin-bottom: 10px; }
-  .footer-links a {
-    font-family: 'Poppins'; font-size: 0.82rem;
-    color: rgba(255,255,255,0.6); text-decoration: none;
-    position: relative; transition: color 0.3s;
-    padding-bottom: 2px;
-  }
-  .footer-links a::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 100%;
-    height: 1px; background: var(--gold);
-    transition: right 0.3s ease;
-  }
-  .footer-links a:hover::after { right: 0; }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-contact-item {
-    display: flex; align-items: center; gap: 10px;
-    font-family: 'Poppins'; font-size: 0.82rem;
-    color: rgba(255,255,255,0.65); margin-bottom: 12px;
-    text-decoration: none; transition: color 0.3s;
-  }
-  .footer-contact-item:hover { color: var(--gold); }
-  .footer-contact-item svg { width: 18px; height: 18px; flex-shrink: 0; }
-  .social-icons { display: flex; gap: 12px; margin-top: 18px; }
-  .social-icon {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(212,175,55,0.3);
+  .contact-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(201,149,108,0.2), rgba(255,77,166,0.1));
+    border: 1px solid rgba(201,149,108,0.3);
     display: flex; align-items: center; justify-content: center;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    margin: 0 auto 16px; font-size: 1.2rem; color: var(--rose-gold);
+  }
+  .contact-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+    color: rgba(245,230,211,0.4); margin-bottom: 8px;
+  }
+  .contact-value {
+    font-size: 0.88rem; color: var(--text-cream);
+    font-weight: 500; line-height: 1.5; margin-bottom: 14px;
+  }
+  .contact-action {
+    display: inline-block; padding: 8px 20px;
+    border: 1px solid rgba(201,149,108,0.35);
+    border-radius: 25px; font-size: 0.78rem;
+    color: var(--rose-gold); text-decoration: none;
+    transition: all 0.3s ease; cursor: pointer;
+    background: none;
+  }
+  .contact-action:hover {
+    background: rgba(201,149,108,0.12);
+    border-color: var(--rose-gold);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 30px 40px;
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(201,149,108,0.2);
+    text-align: center;
+  }
+  .footer-social {
+    display: flex; justify-content: center; gap: 16px; margin-bottom: 20px;
+  }
+  .social-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,149,108,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--rose-gold); text-decoration: none; font-size: 1rem;
+    transition: all 0.3s ease;
   }
   .social-icon:hover {
-    background: rgba(212,175,55,0.15);
-    border-color: var(--gold);
-    transform: translateY(-3px);
+    background: var(--gradient-pink);
+    border-color: transparent; color: #fff;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(255,77,166,0.4);
   }
-  .social-icon svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.75); }
-  .social-icon:hover svg { fill: var(--gold); }
-  .footer-bottom {
-    border-top: 1px solid rgba(212,175,55,0.12);
-    padding: 20px 24px;
-    text-align: center;
-    position: relative;
+  .footer-logo-text {
+    font-family: 'Great Vibes', cursive; font-size: 1.6rem;
+    background: var(--gradient-rose);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
   }
-  .footer-bottom p {
-    font-family: 'Poppins'; font-size: 0.78rem;
-    color: rgba(212,175,55,0.6);
+  .footer-copy { font-size: 0.78rem; color: rgba(245,230,211,0.35); letter-spacing: 1px; }
+  .footer-divider {
+    width: 80px; height: 1px;
+    background: var(--gradient-rose);
+    margin: 12px auto;
   }
 
-  /* ── FLOATING WHATSAPP ── */
-  #float-wp {
-    position: fixed; bottom: 28px; right: 24px; z-index: 800;
-    width: 56px; height: 56px; border-radius: 50%;
-    background: #25D366;
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
     display: flex; align-items: center; justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
-    animation: wpPulse 2.2s ease-in-out infinite;
-    transition: transform 0.25s;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    padding: 20px;
   }
-  #float-wp:hover { transform: scale(1.1); }
-  #float-wp svg { width: 30px; height: 30px; fill: #fff; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-box {
+    background: linear-gradient(145deg, #1a0a10, #0d0608);
+    border: 1px solid rgba(201,149,108,0.35);
+    border-radius: 24px; padding: 40px;
+    width: 100%; max-width: 480px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(201,149,108,0.15);
+    transform: scale(0.9); transition: transform 0.3s ease;
+  }
+  .modal-overlay.open .modal-box { transform: scale(1); }
+  .modal-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gradient-rose);
+  }
+  .modal-title {
+    font-family: 'Great Vibes', cursive; font-size: 2rem;
+    background: var(--gradient-rose);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+  .modal-subtitle { font-size: 0.8rem; color: rgba(245,230,211,0.4); margin-bottom: 24px; letter-spacing: 1px; }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: rgba(245,230,211,0.4);
+    font-size: 1.4rem; cursor: pointer; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--rose-gold); }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block; font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--rose-gold);
+    margin-bottom: 6px; font-weight: 500;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,149,108,0.25);
+    border-radius: 10px; color: var(--text-cream);
+    font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+    outline: none; transition: all 0.3s ease;
+  }
+  .form-group select option { background: #1a0a10; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--rose-gold);
+    box-shadow: 0 0 15px rgba(201,149,108,0.2);
+    background: rgba(201,149,108,0.05);
+  }
+  .form-group textarea { resize: none; height: 80px; }
+  .form-submit {
+    width: 100%; padding: 14px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border: none; border-radius: 12px; color: #fff;
+    font-size: 1rem; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: all 0.3s ease; letter-spacing: 0.5px;
+  }
+  .form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+  }
 
-  /* ── RESPONSIVE ── */
+  /* ===== FLOATING WA BUTTON ===== */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 500;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 1.6rem; text-decoration: none;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+  }
+  .wa-float:hover { transform: scale(1.15); }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(4, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .profile-card { grid-template-columns: auto 1fr; gap: 30px; }
+    .profile-badges { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
+    .price-layout { grid-template-columns: 1fr; }
+    .price-divider-img { display: none; }
+    .contact-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 768px) {
-    .nav-links { display: none; }
+    .navbar { padding: 12px 20px; }
+    .nav-menu { display: none; }
     .hamburger { display: flex; }
-    .artist-photo-ring { width: 170px; height: 170px; }
+    .hero-title-main { font-size: clamp(2.5rem, 12vw, 4.5rem); }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .profile-card { grid-template-columns: 1fr; text-align: center; padding: 30px 20px; }
+    .profile-img-wrap { margin: 0 auto; }
+    .profile-stats { justify-content: center; }
+    .profile-bio { max-width: 100%; }
+    .profile-badges { justify-content: center; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .price-section, .services-section, .gallery-section,
+    .testimonials-section, .contact-section { padding: 60px 20px; }
+    .cta-section { padding: 70px 20px; }
     .tool { display: none; }
-    .tool-1, .tool-4 { display: block; }
+    .tool-lipstick, .tool-eyeliner { display: block; width: 50px; }
   }
   @media (max-width: 480px) {
-    .gallery-grid { grid-template-columns: 1fr; }
-    .tool-1 { display: none; }
-  }
-  @media (min-width: 769px) {
-    #mobile-menu { display: none !important; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-secondary { width: 260px; justify-content: center; }
+    .modal-box { padding: 28px 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Custom Cursor -->
-<div id="cursor"></div>
-<div id="cursor-trail"></div>
+<!-- PARTICLES -->
+<canvas id="particles-canvas"></canvas>
 
-<!-- Confetti Canvas -->
-<canvas id="confetti-canvas"></canvas>
+<!-- FLOATING WA -->
+<a href="https://wa.me/917804947087" target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
-<!-- ════ NAVBAR ════ -->
-<nav id="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="Radhika's Makeup Studio Logo">
-      <span class="nav-logo-text">RADHIKA'S 🪷</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="service.html">Services</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="offers.html">Offers</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Radhika's Makeover Logo">
+    <span class="nav-logo-text">Radhika's<br>Makeover ✨</span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="service.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="offers.html">Offers</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="#" class="nav-book-btn" id="navBookBtn">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu">
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
   <a href="index.html">Home</a>
   <a href="service.html">Services</a>
   <a href="gallery.html">Gallery</a>
   <a href="offers.html">Offers</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
+  <a href="#" class="nav-book-btn" style="margin-top:10px;border-radius:25px;" id="mobileBookBtn">Book Now ✨</a>
 </div>
 
-<!-- ════ HERO ════ -->
-<section id="hero">
-  <video id="hero-video" autoplay muted loop playsinline poster="hero.png">
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <img src="hero.png" alt="Hero Background" class="hero-img-fallback">
+  <video class="hero-video" autoplay muted loop playsinline id="heroVideo">
     <source src="hero.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
 
-  <!-- Floating Makeup Tools -->
-  <img class="tool tool-1"
-    src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&auto=format&fit=crop"
-    alt="Makeup brush">
-  <img class="tool tool-2"
-    src="https://images.unsplash.com/photo-1631214503851-25e4a7e58a3b?w=200&auto=format&fit=crop"
-    alt="Lipstick">
-  <img class="tool tool-3"
-    src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&auto=format&fit=crop"
-    alt="Beauty sponge">
-  <img class="tool tool-4"
-    src="https://images.unsplash.com/photo-1583241800698-e8ab01830a22?w=200&auto=format&fit=crop"
-    alt="Powder compact">
-  <img class="tool tool-5"
-    src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=200&auto=format&fit=crop"
-    alt="Nail polish">
-  <img class="tool tool-6"
-    src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=200&auto=format&fit=crop"
-    alt="Henna cone">
-
-  <!-- Hero Content -->
-  <div class="hero-content reveal">
-    <h1 class="hero-title">✨ Radhika's Makeup Studio ✨</h1>
-    <p class="hero-tagline">"Beauty, Confidence &amp; Glamour"</p>
-    <p class="hero-services-text">Bridal &bull; Party &bull; HD Makeup &bull; Mehndi &bull; Hair Styling</p>
-    <div class="hero-btns">
-      <button class="btn-book" onclick="openModal()">💄 Book Now</button>
-      <a href="service.html" class="btn-services">✨ View Services</a>
+  <!-- FLOATING TOOLS -->
+  <div class="floating-tools">
+    <div class="tool tool-lipstick">
+      <img src="https://images.unsplash.com/photo-1586495777744-4e6232bf8b0b?w=120&h=200&fit=crop&crop=center&q=80" alt="Lipstick">
+    </div>
+    <div class="tool tool-brush1">
+      <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=160&h=60&fit=crop&crop=center&q=80" alt="Brush">
+    </div>
+    <div class="tool tool-compact">
+      <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=120&h=100&fit=crop&crop=center&q=80" alt="Compact">
+    </div>
+    <div class="tool tool-blender">
+      <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=80&h=120&fit=crop&crop=center&q=80" alt="Beauty Blender">
+    </div>
+    <div class="tool tool-eyeliner">
+      <img src="https://images.unsplash.com/photo-1631214524020-3c69e73b7e4a?w=40&h=160&fit=crop&crop=center&q=80" alt="Eyeliner">
+    </div>
+    <div class="tool tool-nailpolish">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=80&h=130&fit=crop&crop=center&q=80" alt="Nail Polish">
+    </div>
+    <div class="tool tool-palette">
+      <img src="https://images.unsplash.com/photo-1583241475880-083f84372725?w=140&h=100&fit=crop&crop=center&q=80" alt="Makeup Palette">
+    </div>
+    <div class="tool tool-mehndi">
+      <img src="https://images.unsplash.com/photo-1601001815688-4fea85d40dd1?w=60&h=140&fit=crop&crop=center&q=80" alt="Mehndi Cone">
+    </div>
+    <div class="tool tool-brush2">
+      <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=140&h=60&fit=crop&crop=center&q=80" alt="Hair Brush">
+    </div>
+    <div class="tool tool-cream">
+      <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=80&h=110&fit=crop&crop=center&q=80" alt="Beauty Cream">
     </div>
   </div>
 
-  <!-- Scroll Indicator -->
-  <div class="scroll-indicator">
-    <span>Scroll</span>
-    <div class="chevron"></div>
+  <!-- HERO CONTENT -->
+  <div class="hero-content">
+    <div class="hero-title-script">Radhika's</div>
+    <div class="hero-title-main">Makeover ✨</div>
+    <div class="hero-stars">✦ ✦ ✦</div>
+    <div class="hero-subtitle">Beauty <span>•</span> Confidence <span>•</span> Glamour</div>
+    <div class="hero-services-line">Bridal &bull; HD Makeup &bull; Mehndi &bull; Hair Styling &bull; Nail Extensions</div>
+    <div class="hero-buttons">
+      <button class="btn-primary" id="heroBookBtn">
+        <i class="fas fa-calendar-check"></i> Book Now
+      </button>
+      <a href="service.html" class="btn-secondary">
+        View Services <i class="fas fa-plus"></i>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- Wave Divider -->
-<svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:50px;background:#fff8f0;">
-  <path fill="#F8E8FF" d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/>
-</svg>
-
-<!-- ════ ARTIST PROFILE ════ -->
-<section id="artist">
-  <div class="particles-container" id="artist-particles"></div>
-  <div class="artist-inner">
-    <div class="artist-photo-wrap reveal">
-      <div class="artist-photo-ring">
-        <img src="profile.png" alt="Radhika Yadav — Lead Makeup Artist">
-      </div>
+<!-- PROFILE SECTION -->
+<section class="profile-section reveal" id="about">
+  <div class="profile-card">
+    <div class="profile-img-wrap">
+      <img src="profile.png" alt="Radhika Yadav">
     </div>
-    <div class="artist-info reveal">
-      <h2 class="artist-name">Radhika Yadav</h2>
-      <p class="artist-title-text">✨ Owner &amp; Lead Makeup Artist</p>
-      <p class="artist-cert">10+ Years of Experience &nbsp;|&nbsp; Certified HD &amp; Airbrush Artist</p>
-      <p class="artist-bio">
-        "With over a decade of expertise in bridal and high-fashion makeup, Radhika Yadav has transformed thousands of faces into living canvases of art. Specializing in HD Airbrush techniques, international base formulas, and timeless bridal looks, she brings every client's dream beauty to life with precision, passion, and luxury."
+    <div class="profile-info">
+      <div class="profile-name">Radhika Yadav</div>
+      <div class="profile-title">Professional Makeup Artist & Beauty Expert</div>
+      <p class="profile-bio">
+        With over 10+ years of experience in the beauty industry, I specialize in bridal makeup, HD airbrush makeup, nail extensions, mehndi artistry, and hairstyling. My mission is to enhance your natural beauty and make you feel confident, elegant & unforgettable on your most special day. Every brushstroke is a promise — of glamour, grace, and a radiance uniquely yours.
       </p>
-      <div class="stat-pills">
-        <div class="stat-pill">💍 500+ Brides Made Beautiful</div>
-        <div class="stat-pill">⭐ 10+ Years Experience</div>
-        <div class="stat-pill">💯 100% Satisfied Clients</div>
+      <div class="profile-stats">
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years Exp.</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5000+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Awards Won</div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-badges">
+      <div class="badge"><i class="fas fa-gem"></i> Premium Products</div>
+      <div class="badge"><i class="fas fa-paint-brush"></i> Professional Artist</div>
+      <div class="badge"><i class="fas fa-heart"></i> Client Satisfaction</div>
+      <div class="badge"><i class="fas fa-shield-alt"></i> Hygiene & Safety</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services-section" id="services">
+  <div class="section-header reveal">
+    <div class="section-ornament">
+      <div class="ornament-line"></div>
+      <span class="ornament-icon">❖</span>
+      <div class="ornament-line right"></div>
+    </div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">Crafted with passion • Delivered with perfection</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1583241800698-e8ab01830a66?w=300&h=400&fit=crop&crop=faces&q=85" alt="Bridal Makeup" class="service-img">
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-name">Bridal Makeup</div>
+        <div class="service-price">₹5000</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=300&h=400&fit=crop&crop=faces&q=85" alt="HD Airbrush Makeup" class="service-img">
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-name">HD Airbrush Makeup</div>
+        <div class="service-price">₹10000</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=400&fit=crop&crop=faces&q=85" alt="Party Makeup" class="service-img">
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-name">Party Makeup</div>
+        <div class="service-price">₹2000</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1601001815688-4fea85d40dd1?w=300&h=400&fit=crop&crop=center&q=85" alt="Mehndi Design" class="service-img">
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-name">Mehndi Design</div>
+        <div class="service-price">₹1500</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=300&h=400&fit=crop&crop=center&q=85" alt="Nail Extensions" class="service-img">
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-name">Nail Extensions</div>
+        <div class="service-price">From ₹600</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&h=400&fit=crop&crop=faces&q=85" alt="Hair Styling" class="service-img">
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-name">Hair Styling</div>
+        <div class="service-price">From ₹500</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&h=400&fit=crop&crop=faces&q=85" alt="Engagement Makeup" class="service-img">
+      <div class="service-overlay"></div>
+      <div class="service-info">
+        <div class="service-name">Engagement Makeup</div>
+        <div class="service-price">₹3000</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Wave Divider -->
-<svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:50px;background:#F8E8FF;">
-  <path fill="#FFF8F0" d="M0,30 C480,0 960,60 1440,30 L1440,60 L0,60 Z"/>
-</svg>
-
-<!-- ════ SERVICES PREVIEW ════ -->
-<section id="services-preview">
-  <h2 class="section-title reveal">Our Signature Services ✨</h2>
-  <p class="section-sub reveal">"Where Every Look Tells a Story"</p>
-  <div class="services-grid">
-
-    <div class="service-card reveal" onclick="openModal('Bridal Makeup (Drama Long Lasting)')">
-      <img class="service-card-img"
-        src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=400&auto=format&fit=crop"
-        alt="Bridal Makeup">
-      <div class="service-card-body">
-        <h3 class="service-card-name">Bridal Makeup</h3>
-        <span class="service-price-badge">₹5,000 onwards</span>
-        <p class="service-desc">Long-lasting drama bridal look, HD airbrush, international base — perfect for your most beautiful day.</p>
-        <button class="btn-book-mini" onclick="event.stopPropagation();openModal('Bridal Makeup (Drama Long Lasting)')">Book Now</button>
-      </div>
+<!-- PRICE LIST SECTION -->
+<section class="price-section" id="pricing">
+  <div class="section-header reveal">
+    <div class="section-ornament">
+      <div class="ornament-line"></div>
+      <span class="ornament-icon">❖</span>
+      <div class="ornament-line right"></div>
     </div>
-
-    <div class="service-card reveal" onclick="openModal('Party Makeup')">
-      <img class="service-card-img"
-        src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&auto=format&fit=crop"
-        alt="Party Makeup">
-      <div class="service-card-body">
-        <h3 class="service-card-name">Party Makeup</h3>
-        <span class="service-price-badge">₹2,000</span>
-        <p class="service-desc">Glamorous evening and party looks that photograph beautifully and last through the entire celebration.</p>
-        <button class="btn-book-mini" onclick="event.stopPropagation();openModal('Party Makeup')">Book Now</button>
-      </div>
+    <h2 class="section-title">Price List</h2>
+    <p class="section-subtitle">Transparent luxury pricing</p>
+  </div>
+  <div class="price-layout reveal">
+    <div class="price-column">
+      <div class="price-row"><span class="price-service-name">Gel Paint on Natural Nails</span><span class="price-amount">₹600</span></div>
+      <div class="price-row"><span class="price-service-name">Gel Overlays</span><span class="price-amount">₹1200</span></div>
+      <div class="price-row"><span class="price-service-name">Gel Extension</span><span class="price-amount">₹1200</span></div>
+      <div class="price-row"><span class="price-service-name">Acrylic Extensions</span><span class="price-amount">₹2000</span></div>
+      <div class="price-row"><span class="price-service-name">No Glue Extensions</span><span class="price-amount">₹2300</span></div>
+      <div class="price-row" style="margin-top:8px;border-color:rgba(201,149,108,0.25)"><span class="price-service-name">Bridal Makeup (Derma Long Lasting)</span><span class="price-amount">₹5000</span></div>
+      <div class="price-row"><span class="price-service-name">HD Airbrush Fabulous Makeup</span><span class="price-amount">₹10000</span></div>
+      <div class="price-row"><span class="price-service-name">Signature Makeup (International Base)</span><span class="price-amount">₹8000</span></div>
     </div>
-
-    <div class="service-card reveal" onclick="openModal('HD Airbrush Fabulous Makeup')">
-      <img class="service-card-img"
-        src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop"
-        alt="HD Airbrush Makeup">
-      <div class="service-card-body">
-        <h3 class="service-card-name">HD Airbrush</h3>
-        <span class="service-price-badge">₹10,000</span>
-        <p class="service-desc">Flawless skin-finish with professional airbrush equipment — invisible pores, 16-hour wear guarantee.</p>
-        <button class="btn-book-mini" onclick="event.stopPropagation();openModal('HD Airbrush Fabulous Makeup')">Book Now</button>
-      </div>
+    <div class="price-divider-img">
+      <img src="https://images.unsplash.com/photo-1583241800698-e8ab01830a66?w=300&h=500&fit=crop&crop=faces&q=85" alt="Bridal Beauty">
     </div>
-
-    <div class="service-card reveal" onclick="openModal('Normal Hair Style')">
-      <img class="service-card-img"
-        src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&auto=format&fit=crop"
-        alt="Hair Styling">
-      <div class="service-card-body">
-        <h3 class="service-card-name">Hair Styling</h3>
-        <span class="service-price-badge">₹500 onwards</span>
-        <p class="service-desc">From elegant bridal updos to advanced bun styles — curated to complement your entire look perfectly.</p>
-        <button class="btn-book-mini" onclick="event.stopPropagation();openModal('Normal Hair Style')">Book Now</button>
-      </div>
+    <div class="price-column">
+      <div class="price-row"><span class="price-service-name">Party Makeup</span><span class="price-amount">₹2000</span></div>
+      <div class="price-row"><span class="price-service-name">Side Makeup</span><span class="price-amount">₹1500</span></div>
+      <div class="price-row"><span class="price-service-name">Engagement Makeup</span><span class="price-amount">₹3000</span></div>
+      <div class="price-row"><span class="price-service-name">Normal Hair Style</span><span class="price-amount">₹500</span></div>
+      <div class="price-row"><span class="price-service-name">Advance Hair Style (Client Reco.)</span><span class="price-amount">₹650</span></div>
+      <div class="price-row"><span class="price-service-name">Lehenga / Saree Draping</span><span class="price-amount">₹300</span></div>
     </div>
-
+  </div>
+  <div class="price-includes reveal">
+    <div class="price-includes-icon">✨</div>
+    <p><strong>Including in each package:</strong> Hairpins, Eyelashes, Lenses, Accessories, Buns, Safety Pins, Draping, and Hairstyle.</p>
   </div>
 </section>
 
-<!-- Wave Divider -->
-<svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:50px;background:#FFF8F0;">
-  <path fill="#2A0A1A" d="M0,0 C360,60 1080,0 1440,60 L1440,60 L0,60 Z"/>
-</svg>
-
-<!-- ════ PRICE LIST ════ -->
-<section id="price-list">
-  <h2 class="section-title reveal">Radhika's Makeover — Price List 💄</h2>
-  <p class="section-sub reveal">"Luxury Beauty, Transparent Pricing"</p>
-
-  <div class="price-columns">
-
-    <!-- Nail Services -->
-    <div class="reveal">
-      <img class="price-col-img"
-        src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&auto=format&fit=crop"
-        alt="Nail Services">
-      <div class="price-col-title">💅 Nail Services</div>
-      <div class="price-item"><span class="price-name">Gel Paint on Natural Nails</span><span class="price-tag">₹600</span></div>
-      <div class="price-item"><span class="price-name">Gel Overlays</span><span class="price-tag">₹1,200</span></div>
-      <div class="price-item"><span class="price-name">Gel Extensions</span><span class="price-tag">₹1,200</span></div>
-      <div class="price-item"><span class="price-name">Acrylic Extensions</span><span class="price-tag">₹2,000</span></div>
-      <div class="price-item"><span class="price-name">No-Glue Extensions</span><span class="price-tag">₹2,300</span></div>
+<!-- GALLERY SECTION -->
+<section class="gallery-section" id="gallery">
+  <div class="section-header reveal">
+    <div class="section-ornament">
+      <div class="ornament-line"></div>
+      <span class="ornament-icon">❖</span>
+      <div class="ornament-line right"></div>
     </div>
-
-    <!-- Makeup Services -->
-    <div class="reveal">
-      <img class="price-col-img"
-        src="https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&auto=format&fit=crop"
-        alt="Makeup Services">
-      <div class="price-col-title">💄 Makeup Services</div>
-      <div class="price-item"><span class="price-name">Bridal Makeup (Drama Long Lasting)</span><span class="price-tag">₹5,000</span></div>
-      <div class="price-item"><span class="price-name">HD Airbrush Fabulous Makeup</span><span class="price-tag">₹10,000</span></div>
-      <div class="price-item"><span class="price-name">Signature Look (International Base)</span><span class="price-tag">₹8,000</span></div>
-      <div class="price-item"><span class="price-name">Party Makeup</span><span class="price-tag">₹2,000</span></div>
-      <div class="price-item"><span class="price-name">Side Makeup</span><span class="price-tag">₹1,500</span></div>
-      <div class="price-item"><span class="price-name">Engagement Makeup</span><span class="price-tag">₹3,000</span></div>
-    </div>
-
-    <!-- Hair & Draping -->
-    <div class="reveal">
-      <img class="price-col-img"
-        src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&auto=format&fit=crop"
-        alt="Hair Styling">
-      <div class="price-col-title">💇 Hair &amp; Draping</div>
-      <div class="price-item"><span class="price-name">Normal Hair Style</span><span class="price-tag">₹500</span></div>
-      <div class="price-item"><span class="price-name">Advanced Hair Style (Client Recommendation)</span><span class="price-tag">₹650</span></div>
-      <div class="price-item"><span class="price-name">Lehenga / Saree Draping</span><span class="price-tag">₹300</span></div>
-    </div>
-
+    <h2 class="section-title">Gallery</h2>
+    <p class="section-subtitle">Real transformations • Real beauty</p>
   </div>
-
-  <!-- Marquee -->
-  <div class="marquee-wrap reveal">
-    <div class="marquee-track">
-      <span class="marquee-text">✨ Every Package Includes: Hairpins • Eyelashes • Lenses • Accessories • Buns • Safety Pins • Draping • Hairstyle ✨</span>
-      <span class="marquee-text">✨ Every Package Includes: Hairpins • Eyelashes • Lenses • Accessories • Buns • Safety Pins • Draping • Hairstyle ✨</span>
-      <span class="marquee-text">✨ Every Package Includes: Hairpins • Eyelashes • Lenses • Accessories • Buns • Safety Pins • Draping • Hairstyle ✨</span>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <img src="gallery1.png" alt="Bridal Glow">
+      <div class="gallery-overlay"><span class="gallery-label">Bridal Glow ✨</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery2.png" alt="Royal Bride">
+      <div class="gallery-overlay"><span class="gallery-label">Royal Bride</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery3.png" alt="Glam Transformation">
+      <div class="gallery-overlay"><span class="gallery-label">Glam Transformation</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery4.png" alt="Elegant Mehndi">
+      <div class="gallery-overlay"><span class="gallery-label">Elegant Mehndi</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery5.png" alt="Hair Perfection">
+      <div class="gallery-overlay"><span class="gallery-label">Hair Perfection</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="gallery6.png" alt="HD Beauty Look">
+      <div class="gallery-overlay"><span class="gallery-label">HD Beauty Look</span></div>
     </div>
   </div>
 </section>
 
-<!-- Wave Divider -->
-<svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:50px;background:#2A0A1A;">
-  <path fill="#FFF8F0" d="M0,60 C480,0 960,60 1440,0 L1440,60 L0,60 Z"/>
-</svg>
-
-<!-- ════ GALLERY PREVIEW ════ -->
-<section id="gallery-preview">
-  <h2 class="section-title reveal">Gallery — Real Transformations ✨</h2>
-  <p class="section-sub reveal">"Every face is a masterpiece. Every look is a memory."</p>
-
-  <div class="gallery-grid">
-    <div class="gallery-card reveal">
-      <img src="gallery1.png" alt="Bridal Transformation 1" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="gallery-overlay-title">✨ Radhika's Makeover</span>
-        <a href="gallery.html" class="gallery-overlay-link">View Full Gallery →</a>
-      </div>
+<!-- TESTIMONIALS SECTION -->
+<section class="testimonials-section" id="reviews">
+  <div class="section-header reveal">
+    <div class="section-ornament">
+      <div class="ornament-line"></div>
+      <span class="ornament-icon">❖</span>
+      <div class="ornament-line right"></div>
     </div>
-    <div class="gallery-card reveal">
-      <img src="gallery2.png" alt="Bridal Transformation 2" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="gallery-overlay-title">✨ Radhika's Makeover</span>
-        <a href="gallery.html" class="gallery-overlay-link">View Full Gallery →</a>
-      </div>
-    </div>
-    <div class="gallery-card reveal">
-      <img src="gallery3.png" alt="Bridal Transformation 3" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="gallery-overlay-title">✨ Radhika's Makeover</span>
-        <a href="gallery.html" class="gallery-overlay-link">View Full Gallery →</a>
-      </div>
-    </div>
-    <div class="gallery-card reveal">
-      <img src="gallery4.png" alt="Party Makeup Look" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="gallery-overlay-title">✨ Radhika's Makeover</span>
-        <a href="gallery.html" class="gallery-overlay-link">View Full Gallery →</a>
-      </div>
-    </div>
-    <div class="gallery-card reveal">
-      <img src="gallery5.png" alt="HD Airbrush Look" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="gallery-overlay-title">✨ Radhika's Makeover</span>
-        <a href="gallery.html" class="gallery-overlay-link">View Full Gallery →</a>
-      </div>
-    </div>
-    <div class="gallery-card reveal">
-      <img src="gallery6.png" alt="Nail Art" loading="lazy">
-      <div class="gallery-overlay">
-        <span class="gallery-overlay-title">✨ Radhika's Makeover</span>
-        <a href="gallery.html" class="gallery-overlay-link">View Full Gallery →</a>
-      </div>
-    </div>
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-subtitle">Love stories • Beautiful moments</p>
   </div>
-
-  <div class="gallery-cta-wrap reveal">
-    <a href="gallery.html" class="btn-gallery">View Full Gallery →</a>
-  </div>
-</section>
-
-<!-- Wave Divider -->
-<svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:50px;background:#FFF8F0;">
-  <path fill="#FFF0F5" d="M0,0 C720,60 1440,0 1440,0 L1440,60 L0,60 Z"/>
-</svg>
-
-<!-- ════ REVIEWS ════ -->
-<section id="reviews">
-  <div class="particles-container" id="review-particles"></div>
-  <h2 class="section-title reveal">What Our Brides Say 💕</h2>
-  <p class="section-sub reveal">"Real Brides, Real Transformations"</p>
-  <div class="reviews-row">
-
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Radhika ji ne meri shaadi ka makeup itna sundar kiya ki main khud ko pehchaan nahi pa rahi thi! HD airbrush tha, poori raat fresh raha. Best artist in Ujjain!"</p>
-      <p class="review-author">Priya Sharma <span class="review-role">— Bridal Client</span></p>
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Radhika did my bridal makeup and I couldn't be happier! It was flawless, long lasting and made me feel like a queen. Every guest was complimenting my look all night!"</p>
+      <div class="t-client">
+        <img src="https://images.unsplash.com/photo-1614644147798-f8c0fc9da7f6?w=80&h=80&fit=crop&crop=faces&q=80" alt="Priya Sharma" class="t-avatar">
+        <div>
+          <div class="t-name">Priya Sharma</div>
+          <div class="t-sub">Bridal Client, Ujjain</div>
+        </div>
+      </div>
     </div>
-
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Party makeup for my sister's engagement was absolutely stunning. The international base lasted 12+ hours and looked flawless in every photo. Highly recommended!"</p>
-      <p class="review-author">Anjali Tiwari <span class="review-role">— Party Makeup</span></p>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Best makeup artist in town! Very professional and uses high quality products. My HD airbrush makeup looked absolutely stunning and camera-ready throughout the day."</p>
+      <div class="t-client">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=faces&q=80" alt="Neha Verma" class="t-avatar">
+        <div>
+          <div class="t-name">Neha Verma</div>
+          <div class="t-sub">HD Makeup Client, Indore</div>
+        </div>
+      </div>
     </div>
-
-    <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Gel nail extensions ₹1200 mein itni beautiful! Aur lehenga draping bhi perfect thi. Radhika ma'am ka kaam dekhke laga professional celebrity artist hai!"</p>
-      <p class="review-author">Meena Patel <span class="review-role">— Nail + Draping</span></p>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"My engagement look was just perfect. Everyone loved the makeup and hairstyle. Radhika understood exactly what I wanted and delivered beyond my expectations!"</p>
+      <div class="t-client">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=faces&q=80" alt="Anjali Patel" class="t-avatar">
+        <div>
+          <div class="t-name">Anjali Patel</div>
+          <div class="t-sub">Engagement Client, Bhopal</div>
+        </div>
+      </div>
     </div>
-
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Amazing mehndi designs and so much detail. Highly recommended! Radhika is truly talented — the patterns were intricate, beautiful and lasted for weeks. Pure artistry!"</p>
+      <div class="t-client">
+        <img src="https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?w=80&h=80&fit=crop&crop=faces&q=80" alt="Simran Kaur" class="t-avatar">
+        <div>
+          <div class="t-name">Simran Kaur</div>
+          <div class="t-sub">Mehndi Client, Ujjain</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Wave Divider -->
-<svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:50px;background:#FFF0F5;">
-  <path fill="#7B1E3A" d="M0,60 C360,0 1080,60 1440,0 L1440,60 L0,60 Z"/>
-</svg>
-
-<!-- ════ BOOKING CTA ════ -->
-<section id="booking-cta">
-  <h2 class="booking-title reveal">✨ Book Your Dream Look Today</h2>
-  <p class="booking-sub reveal">"Transform yourself with Ujjain's most trusted makeup artist"</p>
-  <a href="https://wa.me/919XXXXXXXXX?text=Hello%20Radhika%20ji!%20%F0%9F%8C%B8%20I%27d%20like%20to%20book%20a%20makeup%20appointment.%0AName%3A%20%0ADate%3A%20%0AService%20Required%3A%20"
-     class="btn-whatsapp reveal" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-    Book on WhatsApp
-  </a>
+<!-- CTA SECTION -->
+<section class="cta-section" id="booking">
+  <div class="cta-bg-tools">
+    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&h=80&fit=crop&q=60" class="cta-tool" style="bottom:10%;left:3%;width:160px;transform:rotate(-20deg);" alt="">
+    <img src="https://images.unsplash.com/photo-1586495777744-4e6232bf8b0b?w=80&h=140&fit=crop&q=60" class="cta-tool" style="top:15%;right:5%;width:70px;" alt="">
+    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=120&h=100&fit=crop&q=60" class="cta-tool" style="top:20%;left:8%;width:90px;" alt="">
+    <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=80&h=130&fit=crop&q=60" class="cta-tool" style="bottom:15%;right:8%;width:60px;" alt="">
+  </div>
+  <div style="position:relative;z-index:2;">
+    <div class="cta-title-small">Book Your</div>
+    <div class="cta-title-main">Appointment Now ✨</div>
+    <div class="cta-subtitle">Let's make your special moments even more beautiful</div>
+    <a href="https://wa.me/917804947087?text=Hello%20Radhika!%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" class="btn-whatsapp">
+      <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+    </a>
+  </div>
 </section>
 
-<!-- ════ FOOTER ════ -->
-<footer id="footer">
-  <div class="footer-inner">
-
-    <!-- Col 1: Studio Info -->
-    <div>
-      <div class="footer-logo">
-        <img src="logo.png" alt="Logo">
-        <div class="footer-logo-text">RADHIKA'S<br>MAKEUP STUDIO</div>
-      </div>
-      <p class="footer-address">
-        Infront of DCB Bank, 2/7,<br>
-        Annapurna Nagar, Jawahar Nagar,<br>
-        Ujjain, Madhya Pradesh 456010
-      </p>
-      <a href="https://g.co/kgs/oBLY9E7" target="_blank" rel="noopener" class="footer-map-link">
-        📍 View on Google Maps
-      </a>
+<!-- CONTACT SECTION -->
+<section class="contact-section" id="contact">
+  <div class="section-header reveal">
+    <div class="section-ornament">
+      <div class="ornament-line"></div>
+      <span class="ornament-icon">❖</span>
+      <div class="ornament-line right"></div>
     </div>
-
-    <!-- Col 2: Quick Links -->
-    <div>
-      <h4 class="footer-col-title">Quick Links</h4>
-      <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="service.html">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="offers.html">Offers</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Col 3: Contact & Social -->
-    <div>
-      <h4 class="footer-col-title">Contact &amp; Follow Us</h4>
-      <a href="tel:+919XXXXXXXXX" class="footer-contact-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-        </svg>
-        +91-9XXXXXXXXX
-      </a>
-      <a href="https://g.co/kgs/oBLY9E7" target="_blank" rel="noopener" class="footer-contact-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-          <circle cx="12" cy="10" r="3"/>
-        </svg>
-        Get Directions
-      </a>
-
-      <div class="social-icons">
-        <!-- Instagram -->
-        <a href="#" target="_blank" rel="noopener" class="social-icon" title="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <!-- Facebook -->
-        <a href="#" target="_blank" rel="noopener" class="social-icon" title="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        <!-- YouTube -->
-        <a href="#" target="_blank" rel="noopener" class="social-icon" title="YouTube">
-          <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-        </a>
-        <!-- Maps -->
-        <a href="https://g.co/kgs/oBLY9E7" target="_blank" rel="noopener" class="social-icon" title="Google Maps">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-subtitle">We'd love to hear from you</p>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 Radhika's Makeup Studio. Crafted with 💄 &amp; ✨ | All Rights Reserved</p>
+  <div class="contact-grid reveal">
+    <div class="contact-card">
+      <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div class="contact-label">Location</div>
+      <div class="contact-value">Infront of DCB Bank, 2/7 Annapurna Nagar, Jawahar Nagar, Ujjain, MP 456010</div>
+      <a href="https://g.co/kgs/oBLY9E7" target="_blank" class="contact-action">View on Map</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+      <div class="contact-label">Phone</div>
+      <div class="contact-value">+91 78049 47087</div>
+      <a href="tel:+917804947087" class="contact-action">Call Now</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+      <div class="contact-label">Instagram</div>
+      <div class="contact-value">@radhikas_makeup_studio_2717</div>
+      <a href="https://instagram.com/radhikas_makeup_studio_2717" target="_blank" class="contact-action">Follow Us</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value">shivanishal444@gmail.com</div>
+      <a href="mailto:shivanishal444@gmail.com" class="contact-action">Send Email</a>
+    </div>
   </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-text">Radhika's Makeover ✨</div>
+  <div class="footer-divider"></div>
+  <div class="footer-social">
+    <a href="https://instagram.com/radhikas_makeup_studio_2717" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://wa.me/917804947087" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:shivanishal444@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+  </div>
+  <p class="footer-copy">© 2026 Radhika's Makeover ✨ | All Rights Reserved</p>
 </footer>
 
-<!-- ════ FLOATING WHATSAPP ════ -->
-<a id="float-wp"
-   href="https://wa.me/919XXXXXXXXX?text=Hello%20Radhika%20ji!%20%F0%9F%8C%B8%20I%27d%20like%20to%20book%20a%20makeup%20appointment.%0AName%3A%20%0ADate%3A%20%0AService%20Required%3A%20"
-   target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-</a>
-
-<!-- ════ BOOKING MODAL ════ -->
-<div id="booking-modal" role="dialog" aria-modal="true" aria-label="Book Appointment">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
-    <h3 class="modal-title">💄 Book Your Appointment</h3>
-    <p class="modal-sub">Fill in your details — we'll confirm via WhatsApp 🌸</p>
-    <form id="booking-form" onsubmit="submitBooking(event)">
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+    <div class="modal-title">Book Appointment ✨</div>
+    <div class="modal-subtitle">Fill in your details — we'll confirm via WhatsApp</div>
+    <form id="bookingForm">
       <div class="form-group">
-        <label for="b-name">Your Name *</label>
-        <input type="text" id="b-name" placeholder="e.g. Priya Sharma" required>
+        <label>Full Name</label>
+        <input type="text" id="f-name" placeholder="Your beautiful name" required>
       </div>
       <div class="form-group">
-        <label for="b-phone">Phone Number *</label>
-        <input type="tel" id="b-phone" placeholder="+91 XXXXX XXXXX" required>
+        <label>Phone Number</label>
+        <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX" required>
       </div>
       <div class="form-group">
-        <label for="b-date">Date of Appointment *</label>
-        <input type="date" id="b-date" required>
+        <label>Preferred Date</label>
+        <input type="date" id="f-date" required>
       </div>
       <div class="form-group">
-        <label for="b-service">Service Required *</label>
-        <select id="b-service" required>
-          <option value="">— Select a Service —</option>
-          <optgroup label="💅 Nail Services">
-            <option>Gel Paint on Natural Nails — ₹600</option>
-            <option>Gel Overlays — ₹1,200</option>
-            <option>Gel Extensions — ₹1,200</option>
-            <option>Acrylic Extensions — ₹2,000</option>
-            <option>No-Glue Extensions — ₹2,300</option>
-          </optgroup>
-          <optgroup label="💄 Makeup Services">
-            <option>Bridal Makeup (Drama Long Lasting) — ₹5,000</option>
-            <option>HD Airbrush Fabulous Makeup — ₹10,000</option>
-            <option>Signature Look (International Base) — ₹8,000</option>
-            <option>Party Makeup — ₹2,000</option>
-            <option>Side Makeup — ₹1,500</option>
-            <option>Engagement Makeup — ₹3,000</option>
-          </optgroup>
-          <optgroup label="💇 Hair &amp; Draping">
-            <option>Normal Hair Style — ₹500</option>
-            <option>Advanced Hair Style — ₹650</option>
-            <option>Lehenga/Saree Draping — ₹300</option>
-          </optgroup>
+        <label>Select Service</label>
+        <select id="f-service" required>
+          <option value="">— Choose your service —</option>
+          <option>Bridal Makeup</option>
+          <option>HD Airbrush Makeup</option>
+          <option>Party Makeup</option>
+          <option>Nail Extensions</option>
+          <option>Hair Styling</option>
+          <option>Mehndi Design</option>
+          <option>Engagement Makeup</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="b-notes">Special Notes</label>
-        <textarea id="b-notes" placeholder="Any special requests, reference looks, etc."></textarea>
+        <label>Additional Message</label>
+        <textarea id="f-msg" placeholder="Any special requirements or questions..."></textarea>
       </div>
-      <button type="submit" class="modal-submit">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Send Booking on WhatsApp
+      <button type="submit" class="form-submit">
+        <i class="fab fa-whatsapp"></i> Send on WhatsApp
       </button>
     </form>
   </div>
 </div>
 
 <script>
-// ── CUSTOM CURSOR ──
-const cursor = document.getElementById('cursor');
-const trail  = document.getElementById('cursor-trail');
-document.addEventListener('mousemove', e => {
-  cursor.style.transform = `translate(${e.clientX - 9}px, ${e.clientY - 9}px)`;
-  trail.style.transform  = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
-});
-document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; trail.style.opacity = '0'; });
-document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; trail.style.opacity = '1'; });
-
-// ── NAVBAR SCROLL ──
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 80);
-});
-
-// ── HAMBURGER ──
-const ham  = document.getElementById('hamburger');
-const mMenu = document.getElementById('mobile-menu');
-ham.addEventListener('click', () => {
-  ham.classList.toggle('open');
-  mMenu.classList.toggle('open');
-});
-mMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  ham.classList.remove('open'); mMenu.classList.remove('open');
-}));
-
-// ── SCROLL REVEAL ──
-const revealEls = document.querySelectorAll('.reveal');
-const observer  = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+// ===== PARTICLES =====
+(function(){
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  class Particle {
+    constructor(){
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2.5 + 0.5;
+      this.speedY = Math.random() * 0.6 + 0.2;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.5 + 0.1;
+      this.color = Math.random() > 0.5 ? '#c9956c' : '#ff69b4';
     }
+    update(){
+      this.y -= this.speedY; this.x += this.speedX;
+      if(this.y < -10) { this.y = canvas.height + 10; this.x = Math.random() * canvas.width; }
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = this.opacity;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+  for(let i=0;i<80;i++) particles.push(new Particle());
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{ p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll', function(){
+  const nb = document.getElementById('navbar');
+  if(window.scrollY > 60) nb.classList.add('scrolled');
+  else nb.classList.remove('scrolled');
+});
+
+// ===== HAMBURGER =====
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click', ()=> mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> mobileMenu.classList.remove('open')));
+
+// ===== MODAL =====
+const modal = document.getElementById('bookingModal');
+function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('heroBookBtn').addEventListener('click', openModal);
+document.getElementById('navBookBtn').addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+document.getElementById('mobileBookBtn').addEventListener('click', function(e){ e.preventDefault(); openModal(); mobileMenu.classList.remove('open'); });
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
+
+// ===== BOOKING FORM =====
+document.getElementById('bookingForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name    = document.getElementById('f-name').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const date    = document.getElementById('f-date').value;
+  const service = document.getElementById('f-service').value;
+  const msg     = document.getElementById('f-msg').value.trim();
+  if(!name||!phone||!date||!service){ alert('Please fill all required fields.'); return; }
+  const text = `Hello Radhika! 🌸\n\nI'd like to book an appointment:\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n📅 Date: ${date}\n💄 Service: ${service}\n💬 Message: ${msg||'No additional message'}\n\nPlease confirm my booking. Thank you! ✨`;
+  const waURL = `https://wa.me/917804947087?text=${encodeURIComponent(text)}`;
+  window.open(waURL, '_blank');
+  closeModal();
+  this.reset();
+});
+
+// ===== VIDEO FALLBACK =====
+const video = document.getElementById('heroVideo');
+video.addEventListener('error', function(){ video.style.display='none'; });
+video.addEventListener('canplay', function(){ document.querySelector('.hero-img-fallback').style.opacity='0'; });
+
+// ===== SCROLL REVEAL =====
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('visible'); }
   });
 }, { threshold: 0.1 });
 revealEls.forEach(el => observer.observe(el));
 
-// ── PARTICLES ──
-function spawnParticles(containerId, count = 20) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 5 + 2;
-    p.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${Math.random()*100}%;
-      top:${Math.random()*100}%;
-      animation-duration:${Math.random()*6+4}s;
-      animation-delay:${Math.random()*5}s;
-      opacity:${Math.random()*0.6+0.2};
-    `;
-    container.appendChild(p);
-  }
-}
-spawnParticles('artist-particles', 25);
-spawnParticles('review-particles', 20);
-
-// ── BOOKING MODAL ──
-function openModal(servicePreset = '') {
-  const modal = document.getElementById('booking-modal');
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  if (servicePreset) {
-    const sel = document.getElementById('b-service');
-    for (let opt of sel.options) {
-      if (opt.text.toLowerCase().includes(servicePreset.toLowerCase())) {
-        sel.value = opt.value; break;
-      }
-    }
-  }
-  launchConfetti();
-}
-
-function closeModal() {
-  document.getElementById('booking-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('booking-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-// ── BOOKING FORM SUBMIT ──
-function submitBooking(e) {
-  e.preventDefault();
-  const name    = document.getElementById('b-name').value.trim();
-  const phone   = document.getElementById('b-phone').value.trim();
-  const date    = document.getElementById('b-date').value;
-  const service = document.getElementById('b-service').value;
-  const notes   = document.getElementById('b-notes').value.trim();
-
-  const msg = `Hello Radhika ji! 🌸 I'd like to book a makeup appointment.
-Name: ${name}
-Phone: ${phone}
-Date: ${date}
-Service Required: ${service}
-Special Notes: ${notes || 'None'}`;
-
-  const url = `https://wa.me/919XXXXXXXXX?text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
-  closeModal();
-}
-
-// ── CONFETTI ──
-function launchConfetti() {
-  const canvas = document.getElementById('confetti-canvas');
-  canvas.style.display = 'block';
-  const ctx = canvas.getContext('2d');
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const colors = ['#D4AF37','#C9956A','#FFE4EC','#7B1E3A','#F5E6D3','#fff'];
-  const particles = Array.from({length: 90}, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height - canvas.height,
-    r: Math.random() * 7 + 3,
-    color: colors[Math.floor(Math.random() * colors.length)],
-    speed: Math.random() * 4 + 2,
-    spin: (Math.random() - 0.5) * 0.2,
-    angle: Math.random() * Math.PI * 2,
-    drift: (Math.random() - 0.5) * 2
-  }));
-
-  let frame;
-  let elapsed = 0;
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.angle);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r * 0.5);
-      ctx.restore();
-      p.y     += p.speed;
-      p.x     += p.drift;
-      p.angle += p.spin;
-    });
-    elapsed++;
-    if (elapsed < 120) {
-      frame = requestAnimationFrame(draw);
-    } else {
-      cancelAnimationFrame(frame);
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      canvas.style.display = 'none';
-    }
-  }
-  cancelAnimationFrame(frame);
-  elapsed = 0;
-  draw();
-}
-
-// ── HERO VIDEO FALLBACK ──
-const heroVideo = document.getElementById('hero-video');
-if (heroVideo) {
-  heroVideo.addEventListener('error', () => {
-    heroVideo.style.display = 'none';
-    document.getElementById('hero').style.backgroundImage = "url('hero.png')";
-    document.getElementById('hero').style.backgroundSize = 'cover';
-    document.getElementById('hero').style.backgroundPosition = 'center';
+// ===== SMOOTH SCROLL NAV =====
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', function(e){
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({ behavior:'smooth' }); }
   });
-}
+});
+
+// ===== RIPPLE EFFECT =====
+document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn=>{
+  btn.addEventListener('click', function(e){
+    const ripple = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    ripple.style.cssText = `position:absolute;border-radius:50%;transform:scale(0);animation:rippleAnim 0.5s linear;background:rgba(255,255,255,0.3);width:80px;height:80px;left:${e.clientX-rect.left-40}px;top:${e.clientY-rect.top-40}px;pointer-events:none;`;
+    this.appendChild(ripple);
+    setTimeout(()=> ripple.remove(), 600);
+  });
+});
+const style = document.createElement('style');
+style.textContent = `@keyframes rippleAnim { to { transform:scale(3); opacity:0; } }`;
+document.head.appendChild(style);
+
+// ===== ACTIVE NAV HIGHLIGHT =====
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', ()=>{
+  let current = '';
+  sections.forEach(s=>{
+    if(window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  document.querySelectorAll('.nav-menu a').forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href') === `#${current}`) a.classList.add('active');
+  });
+});
 </script>
 </body>
 </html>
